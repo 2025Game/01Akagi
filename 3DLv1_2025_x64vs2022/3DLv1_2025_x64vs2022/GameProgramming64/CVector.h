@@ -22,6 +22,13 @@ public:
 	float Y() const;
 	//Zの値を得る
 	float Z() const;
+	//+演算子のオーバーロード
+	//CVector + CVector の演算結果を返す
+	CVector operator+(const CVector& v) const;
+	//-演算子のオーバーロード
+	//CVector - CVector の演算結果を返す
+	CVector operator-(const CVector& v) const;
+
 private:
 	//3D各軸での値を設定
 	float mX, mY, mZ;
