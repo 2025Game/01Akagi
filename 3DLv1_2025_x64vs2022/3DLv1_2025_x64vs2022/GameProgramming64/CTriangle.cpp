@@ -25,5 +25,5 @@ void CTriangle::Render()
 	glVertex3f(mV[0].X(), mV[0].Y(), mV[0].Z());
 	glVertex3f(mV[1].X(), mV[1].Y(), mV[1].Z()); 
 	glVertex3f(mV[2].X(), mV[2].Y(), mV[2].Z());
-	glEnd;
+	glEnd();
 }
