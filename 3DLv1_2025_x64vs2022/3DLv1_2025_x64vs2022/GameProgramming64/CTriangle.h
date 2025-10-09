@@ -13,10 +13,11 @@ public:
 	//法線設定
 	//Normal(法線ベクトル)
 	void Normal(const CVector& n);
+	void Normal(const CVector& v0, const CVector& v1, const CVector& v2);
 	//描画
 	void Render();
 private:
 	CVector mV[3]; //頂点座標
-	CVector mN; //法線
+	CVector mN[3]; //法線
 };
 #endif
