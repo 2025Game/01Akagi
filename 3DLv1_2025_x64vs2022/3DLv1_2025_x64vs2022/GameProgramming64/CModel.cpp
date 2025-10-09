@@ -97,7 +97,7 @@ void CModel::Load(const char* obj, const char* mtl)
 			//三角形作成
 			CTriangle t;
 			t.Vertex(vertex[v[0] - 1], vertex[v[1] - 1], vertex[v[2] - 1]);
-			t.Normal(normal[n[0] - 1], vertex[n[1] - 1], vertex[n[2] - 1]);
+			t.Normal(normal[n[0] - 1], normal[n[1] - 1], normal[n[2] - 1]);
 			//可変長配列mTrianglesに三角形を追加
 			mTriangles.push_back(t);
 
