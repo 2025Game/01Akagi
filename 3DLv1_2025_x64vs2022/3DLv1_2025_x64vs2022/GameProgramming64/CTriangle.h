@@ -16,8 +16,18 @@ public:
 	void Normal(const CVector& v0, const CVector& v1, const CVector& v2);
 	//描画
 	void Render();
+	//マテリアル番号の取得
+	int MaterialIdx();
+	//マテリアル番号の設定
+	//Material(マテリアル番号)
+	void MaterialIdx(int idx);
+
 private:
 	CVector mV[3]; //頂点座標
 	CVector mN[3]; //法線
+
+	int mMaterialIdx; //マテリアル番号
+
+
 };
 #endif
