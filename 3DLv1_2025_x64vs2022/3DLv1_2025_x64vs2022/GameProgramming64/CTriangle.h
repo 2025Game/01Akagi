@@ -21,10 +21,13 @@ public:
 	//マテリアル番号の設定
 	//Material(マテリアル番号)
 	void MaterialIdx(int idx);
+	//UV設定
+	void UV(const CVector& v0, const CVector& v1, const CVector& v2);
 
 private:
 	CVector mV[3]; //頂点座標
 	CVector mN[3]; //法線
+	CVector mUv[3];//テクスチャマッピング
 
 	int mMaterialIdx; //マテリアル番号
 
