@@ -5,6 +5,8 @@
  ベクトルデータを扱います
 */
 
+#include "CMatrix.h"
+
 class CVector
 {
 public:
@@ -28,6 +30,9 @@ public:
 	//-演算子のオーバーロード
 	//CVector - CVector の演算結果を返す
 	CVector operator-(const CVector& v) const;
+	//CVector * CMatrixの結果をCVectorで返す
+	CVector operator*(const CMatrix& m) const;
+
 
 private:
 	//3D各軸での値を設定

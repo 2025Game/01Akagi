@@ -18,6 +18,9 @@ public:
 	void Load(const char* obj, const char* mtl);
 	//•`‰æ
 	void Render();
+	//•`‰æ
+	//Render(s—ñ)
+	void Render(const CMatrix& m);
 private:
 	//OŠpŒ`‚Ì‰Â•Ï’·”z—ñ
 	std::vector<CTriangle> mTriangles;
