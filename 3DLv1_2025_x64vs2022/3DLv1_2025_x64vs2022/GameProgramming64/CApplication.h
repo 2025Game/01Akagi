@@ -51,6 +51,6 @@ private:
 	CModel  mModel;
 	CModel  mBackGround;//”wŒiƒ‚ƒfƒ‹
 	CCharacter3 mCharacter;
-	CCharacter3 mPlayer;
+	CPlayer mPlayer;
 
 };
