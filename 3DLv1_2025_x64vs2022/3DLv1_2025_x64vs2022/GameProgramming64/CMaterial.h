@@ -24,6 +24,11 @@ public:
 	void Disabled();
 	//テクスチャの取得
 	CTexture* Texture();
+	//頂点数の設定
+	//VertexNum(頂点数)
+	void VertexNum(int num);
+	//頂点数の取得
+	int VertexNum();
 private:
 	//テクスチャ
 	CTexture mTexture;
@@ -31,6 +36,8 @@ private:
 	char mName[MATERIAL_NAME_LEN + 1];
 	//拡散光の色RGBA
 	float mDiffuse[4];
+	//マテリアル毎の頂点数
+	int mVertexnum;
 };
 
 #endif

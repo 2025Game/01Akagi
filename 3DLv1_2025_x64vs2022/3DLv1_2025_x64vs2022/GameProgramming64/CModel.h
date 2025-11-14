@@ -5,6 +5,7 @@
 #include <vector>
 #include "CTriangle.h"
 #include "CMaterial.h"
+#include "CVertex.h"
 /*
 モデルクラス
 モデルデータの入力や表示
@@ -26,6 +27,10 @@ private:
 	std::vector<CTriangle> mTriangles;
 	//マテリアルポインタの可変長配列
 	std::vector<CMaterial*> mpMaterials;
+	// 頂点の配列
+	CVertex* mpVertexes;
+	void CreateVertexBuffer();
+
 };
 #endif // !CMODEL_H_
 

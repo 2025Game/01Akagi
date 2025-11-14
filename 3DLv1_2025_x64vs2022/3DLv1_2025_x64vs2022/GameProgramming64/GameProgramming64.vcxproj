@@ -44,6 +44,7 @@
     <ClCompile Include="CTriangle.cpp" />
     <ClCompile Include="CUi.cpp" />
     <ClCompile Include="CVector.cpp" />
+    <ClCompile Include="CVertex.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -73,6 +74,7 @@
     <ClInclude Include="CTriangle.h" />
     <ClInclude Include="CUi.h" />
     <ClInclude Include="CVector.h" />
+    <ClInclude Include="CVertex.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
