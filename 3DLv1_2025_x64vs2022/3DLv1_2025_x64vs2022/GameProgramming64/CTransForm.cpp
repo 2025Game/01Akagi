@@ -5,10 +5,13 @@ const CVector& CTransform::Position() const
 	return mPosition;
 }
 
+
 void CTransform::Position(const CVector& v)
 {
 	mPosition = v;
 }
+
+
 
 void CTransform::Rotation(const CVector& v)
 {
