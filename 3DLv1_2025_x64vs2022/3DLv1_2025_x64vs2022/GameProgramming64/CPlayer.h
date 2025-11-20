@@ -3,6 +3,7 @@
 //キャラクタクラスのインクルード
 #include "CCharacter3.h"
 #include "CInput.h"
+#include "CBullet.h"
 
 /*
 プレイヤークラス
@@ -16,6 +17,7 @@ public:
 		, const CVector& scale);
 	//更新処理
 	void Update();
+	CBullet bullet;
 private:
 	CInput mInput;
 };
