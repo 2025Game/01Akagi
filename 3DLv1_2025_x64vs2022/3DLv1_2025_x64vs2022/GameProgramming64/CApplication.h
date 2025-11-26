@@ -11,6 +11,7 @@
 #include "CVector.h"
 #include "CModel.h"
 #include "CCharacter3.h"
+#include "CTaskManager.h"
 
 
 class CApplication
@@ -30,6 +31,8 @@ public:
 	void Start();
 	//ŒJ‚è•Ô‚µÀs‚·‚éƒvƒƒOƒ‰ƒ€
 	void Update();
+
+	static CTaskManager* TaskManager();
 
 private:
 	CSound mSoundBgm;
@@ -51,5 +54,7 @@ private:
 	CModel  mModel;
 	CModel  mBackGround;//”wŒiƒ‚ƒfƒ‹
 	CPlayer mPlayer;
+
+	static CTaskManager mTaskManager;
 
 };

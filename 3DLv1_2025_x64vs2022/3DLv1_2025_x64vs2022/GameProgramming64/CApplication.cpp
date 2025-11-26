@@ -21,6 +21,12 @@
 CCharacterManager CApplication::mCharacterManager;
 CTexture CApplication::mTexture;
 
+CTaskManager CApplication::mTaskManager;
+CTaskManager* CApplication::TaskManager()
+{
+	return &mTaskManager;
+}
+
 CTexture* CApplication::Texture()
 {
 	return &mTexture;
@@ -119,11 +125,10 @@ void CApplication::Update()
 
 	mBackGround.Render();
 
-	mPlayer.bullet.Update();
-	mPlayer.bullet.Render();
-	
-	
+	//タスクマネージャの更新
+	mTaskManager.Update();
+	//タスクマネージャの描画
+	mTaskManager.Render();
 
-	
 }
 
