@@ -17,7 +17,6 @@ public:
 		, const CVector& scale);
 	//XVˆ—
 	void Update();
-	CBullet bullet;
 private:
 	CInput mInput;
 };
