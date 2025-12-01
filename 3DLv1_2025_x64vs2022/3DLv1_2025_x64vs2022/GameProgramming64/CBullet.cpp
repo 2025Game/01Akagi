@@ -5,6 +5,7 @@
 
 CBullet::CBullet()
 	:mLife(50)
+	,mCollider(this, &mMatrix, CVector(0.0f,0.0f,0.0f), 0.1f)
 {
 
 }
@@ -41,6 +42,7 @@ void CBullet::Render()
 	glMaterialfv(GL_FRONT, GL_DIFFUSE, c);
 	//ŽOŠpŒ`•`‰æ
 	mT.Render(mMatrix);
+	mCollider.Render();
 }
 
 //void CBullet::Render()
