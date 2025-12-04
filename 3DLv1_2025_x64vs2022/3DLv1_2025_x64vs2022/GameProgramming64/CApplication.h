@@ -32,7 +32,6 @@ public:
 	//ŒJ‚è•Ô‚µÀs‚·‚éƒvƒƒOƒ‰ƒ€
 	void Update();
 
-	static CTaskManager* TaskManager();
 
 private:
 	CSound mSoundBgm;
@@ -57,6 +56,5 @@ private:
 	CModel  mBackGround;//”wŒiƒ‚ƒfƒ‹
 	CPlayer mPlayer;
 
-	static CTaskManager mTaskManager;
 
 };

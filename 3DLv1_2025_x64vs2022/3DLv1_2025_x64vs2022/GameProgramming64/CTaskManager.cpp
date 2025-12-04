@@ -1,4 +1,8 @@
 #include "CTaskManager.h"
+
+//タスクマネージャのインスタンス
+CTaskManager* CTaskManager::mpInstance = nullptr;
+
 //デフォルトコンストラクタ
 CTaskManager::CTaskManager()
 {
@@ -66,4 +70,14 @@ void CTaskManager::Delete() {
 			delete del;
 		}
 	}
+}
+//インスタンスの取得
+CTaskManager* CTaskManager::Instance()
+{
+	//インスタンスが無ければ
+	if (mpInstance == nullptr)
+	{	//インスタンスを生成する
+		mpInstance = new CTaskManager();
+	}
+	return mpInstance;
 }

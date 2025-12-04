@@ -16,13 +16,6 @@ public:
 		const CVector& rotation, const CVector& scale);
 	//更新処理
 	void Update();
-	//確認用メソッド　削除予定
-	void Render() {
-		CCharacter3::Render();
-		mCollider1.Render();
-		mCollider2.Render();
-		mCollider3.Render();
-	}
 private:
 	//コライダ
 	CCollider mCollider1;
