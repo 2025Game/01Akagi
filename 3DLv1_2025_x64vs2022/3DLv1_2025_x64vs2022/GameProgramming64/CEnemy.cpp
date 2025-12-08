@@ -27,3 +27,11 @@ void CEnemy::Update()
 	mPosition = mPosition + VELOCITY * mMatrixRotate;
 
 }
+void CEnemy::Collision(CCollider* m, CCollider* o)
+{
+	if (CCollider::Collision(m, o))
+	{
+		mEnabled = false;
+	}
+}
+

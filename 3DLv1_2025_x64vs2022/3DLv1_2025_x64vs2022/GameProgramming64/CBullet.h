@@ -23,6 +23,10 @@ public:
 	void Update();
 	//描画
 	void Render();
+	//衝突処理
+    //Collision(コライダ1, コライダ2)
+	void Collision(CCollider* m, CCollider* o);
+
 private:
 	//三角形
 	CTriangle mT;

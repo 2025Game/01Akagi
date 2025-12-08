@@ -6,6 +6,9 @@
 #include "CModel.h"
 
 #include "CTask.h"
+//コライダクラスの宣言
+class CCollider;
+
 /*
 キャラクタークラス
 ゲームキャラクタの基本的な機能を定義する
@@ -21,6 +24,9 @@ public:
 	void Model(CModel* m);
 	//描画処理
 	void Render();
+	//衝突処理
+	virtual void Collision(CCollider* m, CCollider* o) {}
+
 protected:
 	CModel* mpModel; //モデルのポインタ
 };

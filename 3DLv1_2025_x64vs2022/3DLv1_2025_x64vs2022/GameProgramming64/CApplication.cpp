@@ -132,6 +132,9 @@ void CApplication::Update()
 	CTaskManager::Instance()->Render();
 
 	CCollisionManager::Instance()->Render();
+	//コリジョンマネージャの衝突処理
+	CCollisionManager::Instance()->Collision();
+
 
 }
 

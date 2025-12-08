@@ -32,6 +32,8 @@ public:
 	CVector operator-(const CVector& v) const;
 	//CVector * CMatrix‚ÌŒ‹‰Ê‚ðCVector‚Å•Ô‚·
 	CVector operator*(const CMatrix& m) const;
+	//ƒxƒNƒgƒ‹‚Ì’·‚³‚ð•Ô‚·
+	float Length() const;
 
 
 private:
