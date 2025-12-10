@@ -32,6 +32,8 @@ public:
 	//繰り返し実行するプログラム
 	void Update();
 
+	//モデルビュー行列の取得
+	static const CMatrix& ModelViewInverse();
 
 private:
 	CSound mSoundBgm;
@@ -56,5 +58,7 @@ private:
 	CModel  mBackGround;//背景モデル
 	CPlayer mPlayer;
 
+	//モデルビューの逆行列
+	static CMatrix mModelViewInverse;
 
 };

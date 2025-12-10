@@ -3,6 +3,7 @@
 #include "CTaskManager.h"
 
 
+
 CCharacter3::CCharacter3()
 	:mpModel(nullptr)
 {

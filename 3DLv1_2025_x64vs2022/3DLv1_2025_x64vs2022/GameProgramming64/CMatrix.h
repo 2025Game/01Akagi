@@ -42,6 +42,8 @@ public:
 	//行列の取得
 	float* M() const;
 
+	CMatrix Transpose() const;
+
 private:
 	//4×4の行列データを設定
 	float mM[4][4];
