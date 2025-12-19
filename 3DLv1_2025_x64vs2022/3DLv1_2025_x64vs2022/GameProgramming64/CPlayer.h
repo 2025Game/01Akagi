@@ -4,6 +4,7 @@
 #include "CCharacter3.h"
 #include "CInput.h"
 #include "CBullet.h"
+#include "CColliderLine.h"
 
 /*
 プレイヤークラス
@@ -11,7 +12,7 @@
 */
 class CPlayer : public CCharacter3 {
 public:
-	CPlayer() {}
+	CPlayer();
 	//CPlayer(位置, 回転, スケール)
 	CPlayer(const CVector& pos, const CVector& rot
 		, const CVector& scale);
@@ -19,6 +20,8 @@ public:
 	void Update();
 private:
 	CInput mInput;
+	CColliderLine mLine,mLine2, mLine3; //線分コライダ
+	
 };
 
 #endif
