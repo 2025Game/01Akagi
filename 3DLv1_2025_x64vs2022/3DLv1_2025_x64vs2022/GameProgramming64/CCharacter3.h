@@ -26,7 +26,7 @@ public:
 	void Render();
 	//衝突処理
 	virtual void Collision(CCollider* m, CCollider* o) {}
-
+	
 protected:
 	CModel* mpModel; //モデルのポインタ
 };
