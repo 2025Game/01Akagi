@@ -18,6 +18,8 @@ public:
 		, const CVector& scale);
 	//更新処理
 	void Update();
+	//衝突処理
+	void Collision(CCollider* m, CCollider* o);
 private:
 	CInput mInput;
 	CColliderLine mLine,mLine2, mLine3; //線分コライダ

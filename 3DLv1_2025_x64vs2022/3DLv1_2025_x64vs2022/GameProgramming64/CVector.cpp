@@ -59,9 +59,39 @@ CVector CVector::operator*(const CMatrix& m) const
 		mX * m.M(0, 2) + mY * m.M(1, 2) + mZ * m.M(2, 2) + m.M(3, 2)
 	);
 }
+CVector CVector::operator*(const float& f) const
+{
+	return CVector{
+		mX * f,
+		mY * f,
+		mZ * f
+	};
+}
+
 
 //ベクトルの長さを返す
 float CVector::Length() const {
 	//sqrt関数で平方根を返す
 	return sqrtf(mX * mX + mY * mY + mZ * mZ);
+}
+
+//内積
+float CVector::Dot(const CVector& v) const {
+	return mX * v.mX + mY * v.mY + mZ * v.mZ;
+}
+
+
+CVector CVector::Cross(const CVector& v) const
+{
+	return CVector
+	{
+		mY * v.mZ - mZ * v.mY,
+		mZ * v.mX - mX * v.mZ,
+		mX * v.mY - mY * v.mX 
+	};
+}
+
+CVector CVector::Normalize() const {
+	//ベクトルの大きさで割ったベクトルを返す（長さ1のベクトル）
+	return *this * (1.0f / Length());
 }
