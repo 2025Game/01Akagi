@@ -2,6 +2,7 @@
 #define CEFFECT_H
 //ビルボードクラスのインクルード
 #include "CBillBoard.h"
+#define PRIORITY 100 //優先度
 /*
 エフェクトクラス
 テクスチャのアニメーション

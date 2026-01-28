@@ -17,6 +17,8 @@ class CCharacter3 : public CTransform ,public CTask{
 public:
 	//コンストラクタ
 	CCharacter3();
+	//コンストラクタ
+	CCharacter3(int priority);
 	//デストラクタ
 	~CCharacter3();
 	//モデルの設定
