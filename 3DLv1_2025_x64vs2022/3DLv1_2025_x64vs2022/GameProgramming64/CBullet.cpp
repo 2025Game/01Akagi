@@ -1,4 +1,5 @@
 #include "CBullet.h"
+#include "CCollisionManager.h"
 #define VELOCITY CVector(0.0f, 0.0f, 1.0f)
 
 
@@ -52,7 +53,11 @@ void CBullet::Collision(CCollider* m, CCollider* o) {
 		mEnabled = false;
 	}
 }
-
+void CBullet::Collision()
+{
+	mCollider.ChangePriority();
+	CCollisionManager::Instance()->Collision(&mCollider, COLLISIONRANGE);
+}
 //void CBullet::Render()
 //{
 //	glColor3f(1.0f, 1.0f, 0.0f);

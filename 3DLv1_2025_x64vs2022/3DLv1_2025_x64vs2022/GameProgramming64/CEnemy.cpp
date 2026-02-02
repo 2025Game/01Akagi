@@ -1,5 +1,6 @@
 #include "CEnemy.h"
 #include "CApplication.h"
+#include "CCollisionManager.h"
 #include "CEffect.h"
 //ˆÚ“®‘¬“x
 #define VELOCITY CVector(0.0f, 0.0f, 0.09f)
@@ -52,5 +53,15 @@ void CEnemy::Collision(CCollider* m, CCollider* o)
 		}
 		break;
 	}
+}
+void CEnemy::Collision()
+{
+	mCollider1.ChangePriority();
+	mCollider2.ChangePriority();
+	mCollider3.ChangePriority();
+
+	CCollisionManager::Instance()->Collision(&mCollider1, COLLISIONRANGE);
+	CCollisionManager::Instance()->Collision(&mCollider2, COLLISIONRANGE);
+	CCollisionManager::Instance()->Collision(&mCollider3, COLLISIONRANGE);
 }
 

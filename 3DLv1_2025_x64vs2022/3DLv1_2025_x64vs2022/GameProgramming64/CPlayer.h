@@ -20,6 +20,7 @@ public:
 	void Update();
 	//Õ“Ëˆ—
 	void Collision(CCollider* m, CCollider* o);
+	void Collision();
 private:
 	CInput mInput;
 	CColliderLine mLine,mLine2, mLine3; //ü•ªƒRƒ‰ƒCƒ_

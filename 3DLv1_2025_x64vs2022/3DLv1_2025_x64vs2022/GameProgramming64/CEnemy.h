@@ -17,6 +17,7 @@ public:
 	//更新処理
 	void Update();
 	void Collision(CCollider *m, CCollider* o);
+	void Collision();
 private:
 	//コライダ
 	CCollider mCollider1;

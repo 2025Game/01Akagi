@@ -155,7 +155,9 @@ void CApplication::Update()
 
 	CCollisionManager::Instance()->Render();
 	//コリジョンマネージャの衝突処理
-	CCollisionManager::Instance()->Collision();
+	//CCollisionManager::Instance()->Collision();
+
+	CTaskManager::Instance()->Collision();
 
 
 }

@@ -18,6 +18,9 @@ public:
 		, const CVector& v0, const CVector& v1, const CVector& v2);
 	//•`‰æ
 	void Render();
+	//—Dæ“x‚Ì•ÏX
+	void ChangePriority();
+
 };
 #endif
 

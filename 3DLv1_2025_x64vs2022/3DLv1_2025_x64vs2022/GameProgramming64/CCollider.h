@@ -45,6 +45,10 @@ public:
 		CCollider* sphere, CVector* adjust);
 
 	CCollider::EType Type();
+	//優先度の変更
+	void ChangePriority(int priority);
+	//優先度の変更
+	virtual void ChangePriority();
 
 	
 protected:

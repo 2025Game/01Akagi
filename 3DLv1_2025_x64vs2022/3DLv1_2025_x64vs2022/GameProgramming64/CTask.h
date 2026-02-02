@@ -21,6 +21,8 @@ public:
 	virtual void Update() {};
 	//描画
 	virtual void Render() {};
+	//衝突処理
+	virtual void Collision() {}
 protected:
 	int mPriority;	//優先度
 	bool mEnabled;	//有効フラグ
