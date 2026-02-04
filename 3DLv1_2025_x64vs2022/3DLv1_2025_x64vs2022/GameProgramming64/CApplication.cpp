@@ -43,6 +43,13 @@ CCharacterManager* CApplication::CharacterManager()
 	return &mCharacterManager;
 }
 
+CUi* CApplication::spUi = nullptr;
+
+CUi* CApplication::Ui()
+{
+	return spUi;	//インスタンスのポインタを返す
+}
+
 void CApplication::Start()
 {
 	mEye = CVector(1.0f, 2.0f, 3.0f);
@@ -73,6 +80,8 @@ void CApplication::Start()
 	//背景モデルから三角コライダを生成
 	//親インスタンスと親行列はなし
 	mColliderMesh.Set(nullptr, nullptr, &mBackGround);
+
+	spUi = new CUi();	//UIクラスの生成
 
 }
 
@@ -159,6 +168,10 @@ void CApplication::Update()
 
 	CTaskManager::Instance()->Collision();
 
-
+	spUi->Render();	//UIの描画
 }
 
+CApplication::~CApplication()
+{
+	delete spUi;	//インスタンスUiの削除
+}

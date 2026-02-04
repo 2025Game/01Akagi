@@ -37,6 +37,10 @@ public:
 	//モデルビュー行列の取得
 	static const CMatrix& ModelViewInverse();
 
+	static CUi* Ui();	//UIクラスのインスタンスを取得
+
+	~CApplication();
+
 private:
 	CSound mSoundBgm;
 	CSound mSoundOver;
@@ -65,6 +69,8 @@ private:
 
 	//モデルからコライダを生成
 	CColliderMesh mColliderMesh;
+
+	static CUi* spUi;	//UIクラスのポインタ
 
 
 };

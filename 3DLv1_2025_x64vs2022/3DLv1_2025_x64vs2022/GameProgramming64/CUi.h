@@ -24,9 +24,17 @@ public:
 	//Time(時間)
 	void Time(int time);
 	void Render();
+
+	void PosY(float f);	//高度の設定
+	void RotX(float f);	//ピッチの設定
+	void RotY(float f);
+
 private:
 	int mEnemy;	//敵の数
 	int mHp;
 	int mTime;	//経過時間
 	CFont mFont;
+	float mPosY;	//高度　Y座標
+	float mRotX;	//ピッチ　X回転値
+	float mRotY;
 };
