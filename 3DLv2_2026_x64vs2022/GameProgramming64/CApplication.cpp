@@ -8,6 +8,7 @@
 #include "CTransform.h"
 #include "CCollisionManager.h"
 #include "CBillBoard.h"
+#include "CEnemy3.h"
 
 CUi* CApplication::spUi = nullptr;
 
@@ -91,6 +92,10 @@ void CApplication::Start()
 	//背景モデルから三角コライダを生成
 	//親インスタンスと親行列はなし
 	mColliderMesh.Set(nullptr, nullptr, &mBackGround);
+
+
+	new CEnemy3(CVector(-5.0f, 1.0f, -10.0f), CVector(), CVector(0.1f, 0.1f, 0.1f));
+	new CEnemy3(CVector(5.0f, 1.0f, -10.0f), CVector(), CVector(0.1f, 0.1f, 0.1f));
 
 }
 
