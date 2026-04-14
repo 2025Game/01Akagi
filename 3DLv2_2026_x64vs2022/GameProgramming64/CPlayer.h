@@ -23,11 +23,17 @@ public:
 	//更新処理
 	void Update();
 	void Collision();
+	//インスタンスのポインタの取得
+	static CPlayer* Instance();
+
 private:
 	CColliderLine mLine; //線分コライダ
 	CColliderLine mLine2; //線分コライダ
 	CColliderLine mLine3; //線分コライダ
 	CInput mInput;
+	//プレイヤーのインスタンス
+	static CPlayer* spInstance;
+
 };
 
 #endif
