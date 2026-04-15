@@ -26,6 +26,8 @@ private:
 	static CModel sModel;
 	//コライダ
 	CCollider mCollider;
+
+	int mHp;	//ヒットポイント
 };
 
 #endif
