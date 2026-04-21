@@ -16,6 +16,18 @@
     <Filter Include="ソース ファイル\Lib">
       <UniqueIdentifier>{275eb950-ff6a-4535-ac0c-c052fcd2fa52}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\BaseSystem">
+      <UniqueIdentifier>{bb91573c-8272-4af2-aaca-c2536017b66f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\BaseSystem\Scene">
+      <UniqueIdentifier>{75c59bd8-9d06-4d0c-a958-019cc83a6c1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Game">
+      <UniqueIdentifier>{e2116a37-68fc-48a9-bd9f-b1be121094b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Game\Scene">
+      <UniqueIdentifier>{1b348f70-40c6-454c-b454-766e20d205f6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CApplication.cpp">
@@ -140,6 +152,15 @@
     </ClCompile>
     <ClCompile Include="CEnemy3.cpp">
       <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="CSceneBase.cpp">
+      <Filter>ソース ファイル\BaseSystem\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="CTitleScene.cpp">
+      <Filter>ソース ファイル\Game\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="CApplication3.cpp">
+      <Filter>ソース ファイル\Game</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -274,6 +295,18 @@
     </ClInclude>
     <ClInclude Include="CEnemy3.h">
       <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="EScene.h">
+      <Filter>ソース ファイル\BaseSystem\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="CSceneBase.h">
+      <Filter>ソース ファイル\BaseSystem\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="CTitleScene.h">
+      <Filter>ソース ファイル\Game\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="CApplication3.h">
+      <Filter>ソース ファイル\Game</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
