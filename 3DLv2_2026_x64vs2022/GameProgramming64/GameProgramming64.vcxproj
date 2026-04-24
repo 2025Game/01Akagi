@@ -62,6 +62,7 @@
     <ClCompile Include="CUi.cpp" />
     <ClCompile Include="CVector.cpp" />
     <ClCompile Include="CXCharacter.cpp" />
+    <ClCompile Include="CXPlayer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="CTitleScene.cpp" />
   </ItemGroup>
@@ -112,6 +113,7 @@
     <ClInclude Include="CVector.h" />
     <ClInclude Include="CVertex.h" />
     <ClInclude Include="CXCharacter.h" />
+    <ClInclude Include="CXPlayer.h" />
     <ClInclude Include="EScene.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="CTitleScene.h" />

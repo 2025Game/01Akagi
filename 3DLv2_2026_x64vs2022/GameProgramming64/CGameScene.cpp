@@ -20,7 +20,7 @@ void CGameScene::Load()
 	character->Model(&mBackGround);
 	mPlayer.Load(MODEL_FILE);
 
-	CXCharacter* xchar = new CXCharacter();
+	CXPlayer* xchar = new CXPlayer();
 	xchar->Init(&mPlayer);
 }
 void CGameScene::Update()

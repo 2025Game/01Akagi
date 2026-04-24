@@ -4,6 +4,7 @@
 #include "CModel.h"
 #include "CModelX.h"
 #include "CXCharacter.h"
+#include "CXPlayer.h"
 //ƒQ[ƒ€ƒV[ƒ“
 class CGameScene :public CSceneBase
 {
