@@ -7,9 +7,19 @@
 CXPlayer::CXPlayer()
 	:mColliderLine(this, &mMatrix, CVector(0.0f, 3.5f, 0.0f), CVector(0.0f,0.0f,0.0f))
 {
+	// 待機状態の作成
+	mpIdle = std::make_unique<CXPlayerIdle>();
+	// 最初は待機状態
+	// get()はunique_ptrが保持しているポインタを取得する関数
+	mpState = mpIdle.get();
+	mpState->Start(this);
+	mState = mpState->State();
 }
 void CXPlayer::Update()
 {
+	// 状態の更新
+	mpState->Update();
+
 	// GRAVITYの大きさぶんだけ、下方向へ移動させる
 	mPosition = mPosition - CVector(0.0f, GRAVITY, 0.0f);
 

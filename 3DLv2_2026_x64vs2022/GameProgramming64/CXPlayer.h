@@ -3,6 +3,8 @@
 
 #include "CXCharacter.h"
 #include "CColliderLine.h"
+#include "CState.h"
+#include "CXPlayerIdle.h"
 
 class CXPlayer :public CXCharacter
 {
@@ -17,6 +19,9 @@ public:
 
 private:
 	CColliderLine mColliderLine;
+	EState mState;        // ó‘Ô‚Ì•Û
+	CState* mpState;      // ó‘Ôˆ—
+	std::unique_ptr <CXPlayerIdle> mpIdle;     //‘Ò‹@ó‘Ô
 };
 
 #endif // !CXPLAYER_H

@@ -39,6 +39,11 @@ void CTransform::Update(const CVector& pos, const CVector& rot
 	Update();
 }
 
+const CVector& CTransform::Rotation() const
+{
+	return mRotation;
+}
+
 //行列更新処理
 void CTransform::Update() {
 	//拡大縮小行列の設定
