@@ -40,4 +40,6 @@ private:
 
 	CUi* mpUi; //UIクラスのポインタ
 	int mTime; //経過時間
+
+
 };
