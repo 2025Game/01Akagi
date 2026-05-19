@@ -5,6 +5,7 @@
 #include "CColliderLine.h"
 #include "CState.h"
 #include "CXPlayerIdle.h"
+#include "CPlayerWalk.h"
 
 class CXPlayer :public CXCharacter
 {
@@ -22,6 +23,7 @@ private:
 	EState mState;        // ó‘Ô‚Ì•Û
 	CState* mpState;      // ó‘Ôˆ—
 	std::unique_ptr <CXPlayerIdle> mpIdle;     //‘Ò‹@ó‘Ô
+	std::unique_ptr<CPlayerWalk> mpWalk;       //•à‚­ó‘Ô
 };
 
 #endif // !CXPLAYER_H

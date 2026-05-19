@@ -28,4 +28,8 @@ void CXPlayerIdle::Update()
 			CVector(0.0f, -ROTATIONSPEED, 0.0f);
 		mpParent->Rotation(r);
 	}
+	if (mInput.Key('W'))
+	{
+		mState = EState::EWALK;
+	}
 }

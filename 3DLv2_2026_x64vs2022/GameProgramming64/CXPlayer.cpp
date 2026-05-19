@@ -14,11 +14,32 @@ CXPlayer::CXPlayer()
 	mpState = mpIdle.get();
 	mpState->Start(this);
 	mState = mpState->State();
+
+	//•à‚­ó‘Ô‚Ìì¬
+	mpWalk = std::make_unique<CPlayerWalk>();
+
 }
 void CXPlayer::Update()
 {
 	// ó‘Ô‚ÌXV
 	mpState->Update();
+	//ó‘Ô‚ÌØ‚è‘Ö‚¦
+	if (mState != mpState->State())
+	{
+		mState = mpState->State();
+		switch (mState) {
+		case EState::EIDLE:
+			mpState = mpIdle.get();
+			break;
+		case EState::EWALK:
+			mpState = mpWalk.get();
+			break;
+		default:
+			break;
+		}
+		mpState->Start(this);
+	}
+
 
 	// GRAVITY‚Ì‘å‚«‚³‚Ô‚ñ‚¾‚¯A‰º•ûŒü‚ÖˆÚ“®‚³‚¹‚é
 	mPosition = mPosition - CVector(0.0f, GRAVITY, 0.0f);
