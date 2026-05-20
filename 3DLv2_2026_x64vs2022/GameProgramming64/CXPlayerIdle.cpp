@@ -32,4 +32,8 @@ void CXPlayerIdle::Update()
 	{
 		mState = EState::EWALK;
 	}
+	if (mInput.Key('I'))
+	{
+		mState = EState::EATTACK;
+	}
 }

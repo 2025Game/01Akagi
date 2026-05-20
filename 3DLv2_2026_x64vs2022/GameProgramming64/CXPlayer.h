@@ -6,6 +6,7 @@
 #include "CState.h"
 #include "CXPlayerIdle.h"
 #include "CPlayerWalk.h"
+#include "CPlayerAttack.h"
 
 class CXPlayer :public CXCharacter
 {
@@ -24,6 +25,7 @@ private:
 	CState* mpState;      // ó‘Ôˆ—
 	std::unique_ptr <CXPlayerIdle> mpIdle;     //‘Ò‹@ó‘Ô
 	std::unique_ptr<CPlayerWalk> mpWalk;       //•à‚­ó‘Ô
+	std::unique_ptr<CPlayerAttack> mpAttack;   //UŒ‚ó‘Ô
 };
 
 #endif // !CXPLAYER_H
