@@ -68,6 +68,7 @@
     <ClCompile Include="CXPlayerIdle.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="CTitleScene.cpp" />
+    <ClCompile Include="CPlayerJump.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CApplication.h" />
@@ -101,6 +102,7 @@
     <ClInclude Include="CPlayer.h" />
     <ClInclude Include="CPlayer2.h" />
     <ClInclude Include="CPlayerAttack.h" />
+    <ClInclude Include="CPlayerJump.h" />
     <ClInclude Include="CPlayerWalk.h" />
     <ClInclude Include="CPoint.h" />
     <ClInclude Include="CRectangle.h" />

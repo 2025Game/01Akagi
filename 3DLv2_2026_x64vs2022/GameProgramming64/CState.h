@@ -8,7 +8,8 @@ enum class EState
 	ENONE, //ó‘Ô?‚µ
 	EIDLE, //‘Ò‹@
 	EWALK, //•à‚«
-	EATTACK // UŒ‚
+	EATTACK, // UŒ‚
+	EJUMP   // ƒWƒƒƒ“ƒv
 };
 class CState
 {
