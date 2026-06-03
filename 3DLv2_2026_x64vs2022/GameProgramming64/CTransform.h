@@ -7,6 +7,8 @@
 */
 class CTransform {
 public:
+	CTransform();
+	const CMatrix& CombinedMatrix() const;
 	//位置の取得
 	const CVector& Position() const;
 	//位置の設定
@@ -35,6 +37,8 @@ protected: //子クラスはアクセス可能
 	CMatrix mMatrixRotate; //回転行列
 	CMatrix mMatrixScale; //拡大縮小行列
 	CMatrix mMatrix; //合成行列
+	CTransform* mpParent;
+	CMatrix mCombinedMatrix;
 };
 
 #endif

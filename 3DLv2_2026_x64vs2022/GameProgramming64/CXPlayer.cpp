@@ -74,7 +74,16 @@ void CXPlayer::Collision(CCollider* m, CCollider* o)
 				o, m, &adjust))
 			{
 				//位置の更新(mPosition + adjust)
-				mPosition = mPosition + adjust;
+				//現在でのワールド座標の位置
+				mPosition = (CVector() * mMatrix + adjust);
+				if (o->Parent())
+				{
+					mPosition = mPosition *
+						o->Parent()->CombinedMatrix().Inverse();
+				}
+				//親の設定
+				mpParent = o->Parent();
+
 				//行列の更新
 				CTransform::Update();
 			}
