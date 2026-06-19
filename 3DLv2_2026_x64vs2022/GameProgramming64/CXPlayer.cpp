@@ -1,5 +1,6 @@
 #include "CXPlayer.h"
 #include "CCollisionManager.h"
+#include "CCamera.h"
 
 #define _USE_MATH_DEFINES
 #include <math.h>
@@ -27,6 +28,9 @@ CXPlayer::CXPlayer()
 	//ジャンプ状態の作成
 	mpJump = std::make_unique<CPlayerJump>();
 
+	//カメラの親をプレイヤーにする
+	CCamera::Instance()->Parent(this);
+
 }
 void CXPlayer::Update()
 {
@@ -53,6 +57,8 @@ void CXPlayer::Update()
 			break;
 		}
 		mpState->Start(this);
+
+		
 	}
 
 
@@ -61,6 +67,9 @@ void CXPlayer::Update()
 
 	// 親クラスの更新
 	CXCharacter::Update();
+
+	//カメラの位置をプレイヤーの位置から、少し上にする
+	CCamera::Instance()->Position(CVector(0.0f, 4.0f, 0.0f));
 }
 void CXPlayer::Collision(CCollider* m, CCollider* o)
 {
