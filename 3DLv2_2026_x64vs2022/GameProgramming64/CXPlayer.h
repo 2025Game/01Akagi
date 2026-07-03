@@ -3,6 +3,7 @@
 
 #include "CXCharacter.h"
 #include "CColliderLine.h"
+#include "CColliderCapsule.h"
 #include "CState.h"
 #include "CXPlayerIdle.h"
 #include "CPlayerWalk.h"
@@ -22,6 +23,7 @@ public:
 
 private:
 	CColliderLine mColliderLine;
+	CColliderCapsule mColliderCapsule;
 	EState mState;        // ó‘Ô‚Ì•Û
 	CState* mpState;      // ó‘Ôˆ—
 	std::unique_ptr <CXPlayerIdle> mpIdle;     //‘Ò‹@ó‘Ô
