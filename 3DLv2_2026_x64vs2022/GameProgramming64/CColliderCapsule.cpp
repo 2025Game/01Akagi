@@ -12,8 +12,8 @@ void CColliderCapsule::Set(CCharacter3* parent, const CMatrix* matrix,
 	mpMatrix = matrix;
 	mRadius = radius;
 	// 内側の始点と終点を求める
-	mSp = v0 - CVector(0.0f, radius, 0.0f);
-	mEp = v1 + CVector(0.0f, radius, 0.0f);
+	mSp = v0 + (v1 - v0).Normalize() * radius;
+	mEp = v1 + (v0 - v1).Normalize() * radius;
 }
 void CColliderCapsule::Update()
 {
