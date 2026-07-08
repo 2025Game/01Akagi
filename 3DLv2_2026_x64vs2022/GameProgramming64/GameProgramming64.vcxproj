@@ -71,6 +71,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="CTitleScene.cpp" />
     <ClCompile Include="CPlayerJump.cpp" />
+    <ClCompile Include="Paladin.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CApplication.h" />
@@ -130,6 +131,7 @@
     <ClInclude Include="EScene.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="CTitleScene.h" />
+    <ClInclude Include="Paladin.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
