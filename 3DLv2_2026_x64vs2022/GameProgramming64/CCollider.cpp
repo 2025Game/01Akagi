@@ -1,58 +1,58 @@
-#include "CCollider.h"
+ï»¿#include "CCollider.h"
 #include "CCollisionManager.h"
 
-//OŠpŒ`v0v1v2‚Æü•ªsvev‚ªÕ“Ë‚µ‚Ä‚¢‚ê‚Îtrue‚ğ•Ô‚·
+//ä¸‰è§’å½¢v0v1v2ã¨ç·šåˆ†svevãŒè¡çªã—ã¦ã„ã‚Œã°trueã‚’è¿”ã™
 bool FuncCollisionTriangleLine(
-	const CVector& v0, //OŠpŒ`‚Ì’¸“_1
-	const CVector& v1, //OŠpŒ`‚Ì’¸“_2
-	const CVector& v2, //OŠpŒ`‚Ì’¸“_3
-	const CVector& normal, //OŠpŒ`‚Ì–@ü
-	const CVector& sv, //ü•ª‚Ìn“_
-	const CVector& ev, //ü•ª‚ÌI“_
-	CVector* a) //’²®’l
+	const CVector& v0, //ä¸‰è§’å½¢ã®é ‚ç‚¹1
+	const CVector& v1, //ä¸‰è§’å½¢ã®é ‚ç‚¹2
+	const CVector& v2, //ä¸‰è§’å½¢ã®é ‚ç‚¹3
+	const CVector& normal, //ä¸‰è§’å½¢ã®æ³•ç·š
+	const CVector& sv, //ç·šåˆ†ã®å§‹ç‚¹
+	const CVector& ev, //ç·šåˆ†ã®çµ‚ç‚¹
+	CVector* a) //èª¿æ•´å€¤
 {
-	//OŠp‚Ì’¸“_‚©‚çü•ªn“_‚Ö‚ÌƒxƒNƒgƒ‹‚ğ‹‚ß‚é
+	//ä¸‰è§’ã®é ‚ç‚¹ã‹ã‚‰ç·šåˆ†å§‹ç‚¹ã¸ã®ãƒ™ã‚¯ãƒˆãƒ«ã‚’æ±‚ã‚ã‚‹
 	CVector v0sv = sv - v0;
-	//OŠp‚Ì’¸“_‚©‚çü•ªI“_‚Ö‚ÌƒxƒNƒgƒ‹‚ğ‹‚ß‚é
+	//ä¸‰è§’ã®é ‚ç‚¹ã‹ã‚‰ç·šåˆ†çµ‚ç‚¹ã¸ã®ãƒ™ã‚¯ãƒˆãƒ«ã‚’æ±‚ã‚ã‚‹
 	CVector v0ev = ev - v0;
-	//ü•ª‚ª–Ê‚ÆŒğ·‚µ‚Ä‚¢‚é‚©“àÏ‚ÅŠm”F‚·‚é
+	//ç·šåˆ†ãŒé¢ã¨äº¤å·®ã—ã¦ã„ã‚‹ã‹å†…ç©ã§ç¢ºèªã™ã‚‹
 	float dots = v0sv.Dot(normal);
 	float dote = v0ev.Dot(normal);
-	//ƒvƒ‰ƒX‚ÍŒğ·‚µ‚Ä‚È‚¢
+	//ãƒ—ãƒ©ã‚¹ã¯äº¤å·®ã—ã¦ãªã„
 	if (dots * dote >= 0.0f) {
-		//Õ“Ë‚µ‚Ä‚È‚¢i’²®•s—vj
+		//è¡çªã—ã¦ãªã„ï¼ˆèª¿æ•´ä¸è¦ï¼‰
 		*a = CVector(0.0f, 0.0f, 0.0f);
 		return false;
 	}
 
-	//–Ê‚Æü•ª‚ÌŒğ“_‚ğ‹‚ß‚é
-	//Œğ“_‚ÌŒvZ
+	//é¢ã¨ç·šåˆ†ã®äº¤ç‚¹ã‚’æ±‚ã‚ã‚‹
+	//äº¤ç‚¹ã®è¨ˆç®—
 	CVector cross = sv + (ev - sv) * (abs(dots) / (abs(dots) + abs(dote)));
-	//Œğ“_‚ªOŠpŒ`“à‚È‚çÕ“Ë‚µ‚Ä‚¢‚é
+	//äº¤ç‚¹ãŒä¸‰è§’å½¢å†…ãªã‚‰è¡çªã—ã¦ã„ã‚‹
 	if ((v1 - v0).Cross(cross - v0).Dot(normal) < 0.0f) {
-		//Õ“Ë‚µ‚Ä‚È‚¢
+		//è¡çªã—ã¦ãªã„
 		*a = CVector(0.0f, 0.0f, 0.0f);
 		return false;
 	}
 	if ((v2 - v1).Cross(cross - v1).Dot(normal) < 0.0f) {
-		//Õ“Ë‚µ‚Ä‚È‚¢
+		//è¡çªã—ã¦ãªã„
 		*a = CVector(0.0f, 0.0f, 0.0f);
 		return false;
 	}
 	if ((v0 - v2).Cross(cross - v2).Dot(normal) < 0.0f) {
-		//Õ“Ë‚µ‚Ä‚È‚¢
+		//è¡çªã—ã¦ãªã„
 		*a = CVector(0.0f, 0.0f, 0.0f);
 		return false;
 	}
 
-	//ü•ª‚Í–Ê‚ÆŒğ·‚µ‚Ä‚¢‚é
-	//’²®’lŒvZiÕ“Ë‚µ‚È‚¢ˆÊ’u‚Ü‚Å–ß‚·j
+	//ç·šåˆ†ã¯é¢ã¨äº¤å·®ã—ã¦ã„ã‚‹
+	//èª¿æ•´å€¤è¨ˆç®—ï¼ˆè¡çªã—ãªã„ä½ç½®ã¾ã§æˆ»ã™ï¼‰
 	if (dots < 0.0f) {
-		//n“_‚ª— –Ê
+		//å§‹ç‚¹ãŒè£é¢
 		*a = normal * -dots;
 	}
 	else {
-		//I“_‚ª— –Ê
+		//çµ‚ç‚¹ãŒè£é¢
 		*a = normal * -dote;
 	}
 	return true;
@@ -60,40 +60,40 @@ bool FuncCollisionTriangleLine(
 
 void CCollider::ChangePriority()
 {
-	//©•ª‚ÌÀ•W~e‚Ì•ÏŠ·s—ñ‚ğŠ|‚¯‚Äƒ[ƒ‹ƒhÀ•W‚ğ‹‚ß‚é
+	//è‡ªåˆ†ã®åº§æ¨™Ã—è¦ªã®å¤‰æ›è¡Œåˆ—ã‚’æ›ã‘ã¦ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ã‚’æ±‚ã‚ã‚‹
 	CVector pos = mPosition * *mpMatrix;
-	//ƒxƒNƒgƒ‹‚Ì’·‚³‚ª—Dæ“x
+	//ãƒ™ã‚¯ãƒˆãƒ«ã®é•·ã•ãŒå„ªå…ˆåº¦
 	CCollider::ChangePriority((int)pos.Length());
 }
 
 void CCollider::ChangePriority(int priority)
 {
 	mPriority = priority;
-	CCollisionManager::Instance()->Remove(this); //ˆê’Uíœ
-	CCollisionManager::Instance()->Add(this); //’Ç‰Á
+	CCollisionManager::Instance()->Remove(this); //ä¸€æ—¦å‰Šé™¤
+	CCollisionManager::Instance()->Add(this); //è¿½åŠ 
 }
 
-//CollisionTriangleSphere(OŠpƒRƒ‰ƒCƒ_, ‹…ƒRƒ‰ƒCƒ_, ’²®’l)
-//retrun:trueiÕ“Ë‚µ‚Ä‚¢‚éjfalse(Õ“Ë‚µ‚Ä‚¢‚È‚¢)
-//’²®’l:Õ“Ë‚µ‚È‚¢ˆÊ’u‚Ü‚Å–ß‚·’l
+//CollisionTriangleSphere(ä¸‰è§’ã‚³ãƒ©ã‚¤ãƒ€, çƒã‚³ãƒ©ã‚¤ãƒ€, èª¿æ•´å€¤)
+//retrun:trueï¼ˆè¡çªã—ã¦ã„ã‚‹ï¼‰false(è¡çªã—ã¦ã„ãªã„)
+//èª¿æ•´å€¤:è¡çªã—ãªã„ä½ç½®ã¾ã§æˆ»ã™å€¤
 bool CCollider::CollisionTriangleSphere(
-	CCollider* triangle, //OŠpŒ`ƒRƒ‰ƒCƒ_
-	CCollider* sphere, //‹…ƒRƒ‰ƒCƒ_
-	CVector* adjust) //’²®’l
+	CCollider* triangle, //ä¸‰è§’å½¢ã‚³ãƒ©ã‚¤ãƒ€
+	CCollider* sphere, //çƒã‚³ãƒ©ã‚¤ãƒ€
+	CVector* adjust) //èª¿æ•´å€¤
 {
 	CVector v0, v1, v2, normal, sv, ev;
-	//‰Û‘è
-	//ŠeƒRƒ‰ƒCƒ_‚Ì’¸“_‚ğƒ[ƒ‹ƒhÀ•W‚Ö•ÏŠ·
+	//èª²é¡Œ
+	//å„ã‚³ãƒ©ã‚¤ãƒ€ã®é ‚ç‚¹ã‚’ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ã¸å¤‰æ›
 	v0 = triangle->mV[0] * *triangle->mpMatrix;
 	v1 = triangle->mV[1] * *triangle->mpMatrix;
 	v2 = triangle->mV[2] * *triangle->mpMatrix;
 	ev = sphere->mPosition * *sphere->mpMatrix;
-	//–Ê‚Ì–@ü‚ğAŠOÏ‚ğ³‹K‰»‚µ‚Ä‹‚ß‚é
+	//é¢ã®æ³•ç·šã‚’ã€å¤–ç©ã‚’æ­£è¦åŒ–ã—ã¦æ±‚ã‚ã‚‹
 	normal = (v1 - v0).Cross(v2 - v0).Normalize();
 	sv = ev + normal * sphere->mRadius;
 	ev = ev - normal * sphere->mRadius;
 
-	//OŠpŒ`‚Æü•ª‚ÌÕ“Ë”»’è‚ğs‚¤
+	//ä¸‰è§’å½¢ã¨ç·šåˆ†ã®è¡çªåˆ¤å®šã‚’è¡Œã†
 	return FuncCollisionTriangleLine(v0, v1, v2, normal, sv, ev, adjust);
 }
 
@@ -101,15 +101,32 @@ bool CCollider::CollisionTriangleSphere(
 bool CCollider::CollisionTriangleLine(CCollider* t, CCollider* l, CVector* a)
 {
 	CVector v[3], sv, ev;
-	//ŠeƒRƒ‰ƒCƒ_‚Ì’¸“_‚ğƒ[ƒ‹ƒhÀ•W‚Ö•ÏŠ·
+	//å„ã‚³ãƒ©ã‚¤ãƒ€ã®é ‚ç‚¹ã‚’ãƒ¯ãƒ¼ãƒ«ãƒ‰åº§æ¨™ã¸å¤‰æ›
 	v[0] = t->mV[0] * *t->mpMatrix;
 	v[1] = t->mV[1] * *t->mpMatrix;
 	v[2] = t->mV[2] * *t->mpMatrix;
 	sv = l->mV[0] * *l->mpMatrix;
 	ev = l->mV[1] * *l->mpMatrix;
-	//–Ê‚Ì–@ü‚ğAŠOÏ‚ğ³‹K‰»‚µ‚Ä‹‚ß‚é
+	//é¢ã®æ³•ç·šã‚’ã€å¤–ç©ã‚’æ­£è¦åŒ–ã—ã¦æ±‚ã‚ã‚‹
 	CVector normal = (v[1] - v[0]).Cross(v[2] - v[0]).Normalize();
 	return FuncCollisionTriangleLine(v[0], v[1], v[2], normal, sv, ev, a);
+}
+
+bool CCollider::CollisionCapsuleCapsule(CCollider* m, CCollider* o, CVector* adjust)
+{
+	CVector mp1, mp2;
+	float t1, t2;
+	float radius = m->mRadius + o->mRadius;
+	*adjust = CVector();
+	if (CalcLineLineDist(m->mV[0], m->mV[1],
+		o->mV[0], o->mV[1], &mp1, &mp2, &t1, &t2) < radius)
+	{
+		*adjust = mp1 - mp2;
+		float len = radius - adjust->Length();
+		*adjust = adjust->Normalize() * len;
+		return true;
+	}
+	return false;
 }
 
 
@@ -124,30 +141,90 @@ CCollider::CCollider()
 	, mType(EType::ESPHERE)
 	, mRadius(0)
 {
-	//ƒRƒŠƒWƒ‡ƒ“ƒ}ƒl[ƒWƒƒ‚É’Ç‰Á
+	//ã‚³ãƒªã‚¸ãƒ§ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£ã«è¿½åŠ 
 	CCollisionManager::Instance()->Add(this);
 }
 
 bool CCollider::Collision(CCollider* m, CCollider* o)
 {
-	//ŠeƒRƒ‰ƒCƒ_‚Ì’†SÀ•W‚ğ‹‚ß‚é
-	//Œ´“_~ƒRƒ‰ƒCƒ_‚Ì•ÏŠ·s—ñ~e‚Ì•ÏŠ·s—ñ
+	//å„ã‚³ãƒ©ã‚¤ãƒ€ã®ä¸­å¿ƒåº§æ¨™ã‚’æ±‚ã‚ã‚‹
+	//åŸç‚¹Ã—ã‚³ãƒ©ã‚¤ãƒ€ã®å¤‰æ›è¡Œåˆ—Ã—è¦ªã®å¤‰æ›è¡Œåˆ—
 	CVector mpos = m->mPosition * *m->mpMatrix;
 	CVector opos = o->mPosition * *o->mpMatrix;
-	//’†S‚©‚ç’†S‚Ö‚ÌƒxƒNƒgƒ‹‚ğ‹‚ß‚é
+	//ä¸­å¿ƒã‹ã‚‰ä¸­å¿ƒã¸ã®ãƒ™ã‚¯ãƒˆãƒ«ã‚’æ±‚ã‚ã‚‹
 	mpos = mpos - opos;
-	//’†S‚Ì‹——£‚ª”¼Œa‚Ì‡Œv‚æ‚è¬‚³‚¢‚ÆÕ“Ë
+	//ä¸­å¿ƒã®è·é›¢ãŒåŠå¾„ã®åˆè¨ˆã‚ˆã‚Šå°ã•ã„ã¨è¡çª
 	if (m->mRadius + o->mRadius > mpos.Length()) {
-		//Õ“Ë‚µ‚Ä‚¢‚é
+		//è¡çªã—ã¦ã„ã‚‹
 		return  true;
 	}
-	//Õ“Ë‚µ‚Ä‚¢‚È‚¢
+	//è¡çªã—ã¦ã„ãªã„
 	return false;
+}
+
+//CalcCalcPointLineDist(ç‚¹, å§‹ç‚¹, çµ‚ç‚¹, ç·šä¸Šã®æœ€çŸ­ç‚¹, å‰²åˆ)
+//ç‚¹ã¨ç·š(å§‹ç‚¹ã€çµ‚ç‚¹ã‚’é€šã‚‹ç›´ç·š)ã®æœ€çŸ­è·é›¢ã‚’æ±‚ã‚ã‚‹
+float CCollider::CalcPointLineDist(
+	const CVector& p,
+	const CVector& s,
+	const CVector& e,
+	CVector* mp,
+	float* t)
+{
+	*t = 0.0f; //å‰²åˆã®åˆæœŸåŒ–
+	CVector v = e - s; //å§‹ç‚¹ä››ã‚‰çµ‚ç‚¹ã¸ã®ãƒ™ã‚¯ãƒˆãƒ«ã‚’æ±‚ã‚ã‚‹
+	float dvv = v.Dot(v); //ãƒ™ã‚¯ãƒˆãƒ«ã®é•·ã•ã®2ä¹—ã‚’æ±‚ã‚ã‚‹
+	if (dvv > 0.0f) {
+		*t = v.Dot(p - s) / dvv; //ç·šä¸Šã®å‚ç·šã¨ãªã‚‹ç‚¹ã®å‰²åˆã‚’æ±‚ã‚ã‚‹
+	}
+	*mp = s + v * *t; //ç·šä¸Šã®å‚ç·šã¨ãªã‚‹ç‚¹ã‚’æ±‚ã‚ã‚‹
+	return (p - *mp).Length(); //å‚ç·šã®é•·ã•ã‚’è¿”ã™
+}
+
+//CalcLineLineDist(å§‹ç‚¹1, çµ‚ç‚¹1, å§‹ç‚¹2, çµ‚ç‚¹2, äº¤ç‚¹1, äº¤ç‚¹2, æ¯”ç‡1, æ¯”ç‡2)
+//2ç·šé–“ã®æœ€çŸ­è·é›¢ã‚’è¿”ã™
+float CCollider::CalcLineLineDist(
+	const CVector& s1, //å§‹ç‚¹1
+	const CVector& e1, //çµ‚ç‚¹1
+	const CVector& s2, //å§‹ç‚¹2
+	const CVector& e2, //çµ‚ç‚¹2
+	CVector* mp1, //äº¤ç‚¹1
+	CVector* mp2, //äº¤ç‚¹2
+	float* t1, //æ¯”ç‡1
+	float* t2 //æ¯”ç‡2
+)
+{
+	CVector v1 = e1 - s1;
+	CVector v2 = e2 - s2;
+	//2ç›´ç·šãŒå¹³è¡Œ
+	if (v1.Cross(v2).Length() < 0.000001f) {
+		//ç·šåˆ†1ã®å§‹ç‚¹ã‹ã‚‰ç›´ç·š2ã¾ã§ã®æœ€çŸ­è·é›¢å•é¡Œã«å¸°ç€ã™ã‚‹
+		*t1 = 0.0f;
+		*mp1 = s1;
+		float dist = CalcPointLineDist(*mp1, s2, e2, mp2, t2);
+		return dist;
+	}
+	//2ç›´ç·šãŒå¹³è¡Œã§ã¯ãªã„
+	float dv1v2 = v1.Dot(v2);
+	float dv1v1 = v1.Dot(v1);
+	float dv2v2 = v2.Dot(v2);
+	CVector vs2s1 = s1 - s2;
+	//æ¯”ç‡1ã‚’æ±‚ã‚ã‚‹
+	*t1 = (dv1v2 * v2.Dot(vs2s1) - dv2v2 * v1.Dot(vs2s1))
+		/ (dv1v1 * dv2v2 - dv1v2 * dv1v2);
+	//äº¤ç‚¹1ã‚’æ±‚ã‚ã‚‹
+	*mp1 = s1 + v1 * *t1;
+	//æ¯”ç‡2ã‚’æ±‚ã‚ã‚‹
+	*t2 = v2.Dot(*mp1 - s2) / dv2v2;
+	//äº¤ç‚¹2ã‚’æ±‚ã‚ã‚‹
+	*mp2 = s2 + v2 * *t2;
+	//æœ€çŸ­è·é›¢ã‚’è¿”ã™
+	return (*mp2 - *mp1).Length();
 }
 
 CCollider::~CCollider()
 {
-	//ƒRƒŠƒWƒ‡ƒ“ƒŠƒXƒg‚©‚çíœ
+	//ã‚³ãƒªã‚¸ãƒ§ãƒ³ãƒªã‚¹ãƒˆã‹ã‚‰å‰Šé™¤
 	CCollisionManager::Instance()->Remove(this);
 }
 
@@ -155,15 +232,15 @@ CCollider::CCollider(CCharacter3* parent, CMatrix* matrix,
 	const CVector& position, float radius)
 	: CCollider() 
 {
-	//eİ’è
+	//è¦ªè¨­å®š
 	mpParent = parent;
-	//es—ñİ’è
+	//è¦ªè¡Œåˆ—è¨­å®š
 	mpMatrix = matrix;
-	//CTransformİ’è
-	mPosition = position; //ˆÊ’u
-	//”¼Œaİ’è
+	//CTransformè¨­å®š
+	mPosition = position; //ä½ç½®
+	//åŠå¾„è¨­å®š
 	mRadius = radius;
-	//ƒRƒŠƒWƒ‡ƒ“ƒ}ƒl[ƒWƒƒ‚É’Ç‰Á
+	//ã‚³ãƒªã‚¸ãƒ§ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£ã«è¿½åŠ 
 	//CCollisionManager::Instance()->Add(this);
 
 }
@@ -175,15 +252,15 @@ CCharacter3* CCollider::Parent()
 
 void CCollider::Render() {
 	glPushMatrix();
-	//ƒRƒ‰ƒCƒ_‚Ì’†SÀ•W‚ğŒvZ
-	//©•ª‚ÌÀ•W~e‚Ì•ÏŠ·s—ñ‚ğŠ|‚¯‚é
+	//ã‚³ãƒ©ã‚¤ãƒ€ã®ä¸­å¿ƒåº§æ¨™ã‚’è¨ˆç®—
+	//è‡ªåˆ†ã®åº§æ¨™Ã—è¦ªã®å¤‰æ›è¡Œåˆ—ã‚’æ›ã‘ã‚‹
 	CVector pos = mPosition * *mpMatrix;
-	//’†SÀ•W‚ÖˆÚ“®
+	//ä¸­å¿ƒåº§æ¨™ã¸ç§»å‹•
 	glMultMatrixf(CMatrix().Translate(pos.X(), pos.Y(), pos.Z()).M());
-	//DIFFUSEÔFİ’è
+	//DIFFUSEèµ¤è‰²è¨­å®š
 	float c[] = { 1.0f, 0.0f, 0.0f, 1.0f };
 	glMaterialfv(GL_FRONT, GL_DIFFUSE, c);
-	//‹…•`‰æ
+	//çƒæç”»
 	glutWireSphere(mRadius, 16, 16);
 	glPopMatrix();
 }

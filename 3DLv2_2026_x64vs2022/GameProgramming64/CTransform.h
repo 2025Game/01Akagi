@@ -9,6 +9,7 @@ class CTransform {
 public:
 	CTransform();
 	const CMatrix& CombinedMatrix() const;
+	CTransform* Parent() { return mpParent; }
 	//Šgk‚Ìæ“¾
 	const CVector& Scale() const;
 	//ˆÊ’u‚Ìæ“¾

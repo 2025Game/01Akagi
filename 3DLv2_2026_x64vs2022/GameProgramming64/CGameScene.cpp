@@ -29,7 +29,7 @@ void CGameScene::Load()
 
 	mColliderMesh.Set(nullptr, nullptr, &mBackGround);
 
-	CPaladin* paladin = new CPaladin(CVector(0.0f, 1.0f, -4.0f));
+	CPaladin* paladin = new CPaladin(CVector(0.0f, 5.0f, -9.0f));
 
 	CCharacter3* cube = new CCube();
 	cube->Position(CVector(0.0f, 0.0f, -9.0f));

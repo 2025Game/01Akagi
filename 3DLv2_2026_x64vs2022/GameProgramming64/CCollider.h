@@ -1,67 +1,94 @@
-#ifndef CCOLLIDER_H
+ï»¿#ifndef CCOLLIDER_H
 #define CCOLLIDER_H
-//ƒLƒƒƒ‰ƒNƒ^ƒNƒ‰ƒX‚ÌƒCƒ“ƒNƒ‹[ƒh
+//ã‚­ãƒ£ãƒ©ã‚¯ã‚¿ã‚¯ãƒ©ã‚¹ã®ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 #include "CCharacter3.h"
 class CCollisionManager;
 
 /*
-ƒRƒ‰ƒCƒ_ƒNƒ‰ƒX
-Õ“Ë”»’èƒf[ƒ^
+ã‚³ãƒ©ã‚¤ãƒ€ã‚¯ãƒ©ã‚¹
+è¡çªåˆ¤å®šãƒ‡ãƒ¼ã‚¿
 */
 class CCollider : public CTransform , CTask {
 	friend CCollisionManager;
 public:
-	//—Dæ“x‚Ì•ÏX
+	//å„ªå…ˆåº¦ã®å¤‰æ›´
 	virtual void ChangePriority();
 
-	//—Dæ“x‚Ì•ÏX
+	//å„ªå…ˆåº¦ã®å¤‰æ›´
 	void ChangePriority(int priority);
 
-	//CollisionTriangleSphere(OŠpƒRƒ‰ƒCƒ_, ‹…ƒRƒ‰ƒCƒ_, ’²®’l)
-	//retrun:trueiÕ“Ë‚µ‚Ä‚¢‚éjfalse(Õ“Ë‚µ‚Ä‚¢‚È‚¢)
-	//’²®’l:Õ“Ë‚µ‚È‚¢ˆÊ’u‚Ü‚Å–ß‚·’l
+	//CollisionTriangleSphere(ä¸‰è§’ã‚³ãƒ©ã‚¤ãƒ€, çƒã‚³ãƒ©ã‚¤ãƒ€, èª¿æ•´å€¤)
+	//retrun:trueï¼ˆè¡çªã—ã¦ã„ã‚‹ï¼‰false(è¡çªã—ã¦ã„ãªã„)
+	//èª¿æ•´å€¤:è¡çªã—ãªã„ä½ç½®ã¾ã§æˆ»ã™å€¤
 	static bool CollisionTriangleSphere(CCollider* triangle,
 		CCollider* sphere, CVector* adjust);
 
-	//CollisionTriangleLine(OŠpƒRƒ‰ƒCƒ_, ü•ªƒRƒ‰ƒCƒ_, ’²®’l)
-	//retrun:trueiÕ“Ë‚µ‚Ä‚¢‚éjfalse(Õ“Ë‚µ‚Ä‚¢‚È‚¢)
-	//’²®’l:Õ“Ë‚µ‚È‚¢ˆÊ’u‚Ü‚Å–ß‚·’l
+	//CollisionTriangleLine(ä¸‰è§’ã‚³ãƒ©ã‚¤ãƒ€, ç·šåˆ†ã‚³ãƒ©ã‚¤ãƒ€, èª¿æ•´å€¤)
+	//retrun:trueï¼ˆè¡çªã—ã¦ã„ã‚‹ï¼‰false(è¡çªã—ã¦ã„ãªã„)
+	//èª¿æ•´å€¤:è¡çªã—ãªã„ä½ç½®ã¾ã§æˆ»ã™å€¤
 	static bool CollisionTriangleLine(CCollider* triangle, CCollider* line, CVector* adjust);
 
-	//ƒRƒ‰ƒCƒ_ƒ^ƒCƒv
+	//ã‚«ãƒ—ã‚»ãƒ«ã‚³ãƒ©ã‚¤ãƒ€ã¨ã‚«ãƒ—ã‚»ãƒ«ã‚³ãƒ©ã‚¤ãƒ€ã®è¡çªåˆ¤å®š
+    //static bool CollisionCapsuleCapsule(ã‚«ãƒ—ã‚»ãƒ«1, ã‚«ãƒ—ã‚»ãƒ«2, èª¿æ•´å€¤)
+    //èª¿æ•´å€¤:ã‚«ãƒ—ã‚»ãƒ«1ãŒè¡çªã—ãªã„ä½ç½®ã¾ã§ç§»å‹•ã™ã‚‹ç§»å‹•é‡
+    //æˆ»ã‚Šå€¤:true è¡çªã—ã¦ã„ã‚‹ false è¡çªã—ã¦ã„ãªã„
+	static bool CollisionCapsuleCapsule(
+		CCollider* m, CCollider* o, CVector* adjust);
+
+	//ã‚³ãƒ©ã‚¤ãƒ€ã‚¿ã‚¤ãƒ—
 	enum class EType {
-		ESPHERE,//‹…ƒRƒ‰ƒCƒ_
-		ETRIANGLE,//OŠpƒRƒ‰ƒCƒ_
-		ELINE, //ü•ªƒRƒ‰ƒCƒ_
+		ESPHERE,//çƒã‚³ãƒ©ã‚¤ãƒ€
+		ETRIANGLE,//ä¸‰è§’ã‚³ãƒ©ã‚¤ãƒ€
+		ELINE, //ç·šåˆ†ã‚³ãƒ©ã‚¤ãƒ€
 		ECAPSULE,
 	};
 	CCollider::EType Type();
 
-	//ƒfƒtƒHƒ‹ƒgƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	//ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	CCollider();
 
-	//Õ“Ë”»’è
-	//Collision(ƒRƒ‰ƒCƒ_1, ƒRƒ‰ƒCƒ_2)
-	//retrun:trueiÕ“Ë‚µ‚Ä‚¢‚éjfalse(Õ“Ë‚µ‚Ä‚¢‚È‚¢)
+	//è¡çªåˆ¤å®š
+	//Collision(ã‚³ãƒ©ã‚¤ãƒ€1, ã‚³ãƒ©ã‚¤ãƒ€2)
+	//retrun:trueï¼ˆè¡çªã—ã¦ã„ã‚‹ï¼‰false(è¡çªã—ã¦ã„ãªã„)
 	static bool Collision(CCollider* m, CCollider* o);
+	
+	//CalcCalcPointLineDist(ç‚¹, å§‹ç‚¹, çµ‚ç‚¹, ç·šä¸Šã®æœ€çŸ­ç‚¹, å‰²åˆ)
+    //ç‚¹ã¨ç·š(å§‹ç‚¹ã€çµ‚ç‚¹ã‚’é€šã‚‹ç›´ç·š)ã®æœ€çŸ­è·é›¢ã‚’æ±‚ã‚ã‚‹
+	static float CalcPointLineDist(const CVector& p, const CVector& s, const CVector& e,
+		CVector* mp, float* t);
+
+	//CalcLineLineDist(å§‹ç‚¹1, çµ‚ç‚¹1, å§‹ç‚¹2, çµ‚ç‚¹2, äº¤ç‚¹1, äº¤ç‚¹2, æ¯”ç‡1, æ¯”ç‡2)
+    //2ç·šé–“nã®æœ€çŸ­è·é›¢ã‚’è¿”ã™
+	static float CalcLineLineDist(
+		const CVector& s1, //å§‹ç‚¹1
+		const CVector& e1, //çµ‚ç‚¹1
+		const CVector& s2, //å§‹ç‚¹2
+		const CVector& e2, //çµ‚ç‚¹2
+		CVector* mp1, //äº¤ç‚¹1
+		CVector* mp2, //äº¤ç‚¹2
+		float* t1, //æ¯”ç‡1
+		float* t2 //æ¯”ç‡2
+	);
+	
+
 
 	~CCollider();
-	//ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	//CCollider(e, es—ñ, ˆÊ’u, ”¼Œa)
+	//ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	//CCollider(è¦ª, è¦ªè¡Œåˆ—, ä½ç½®, åŠå¾„)
 	CCollider(CCharacter3* parent, CMatrix* matrix,
 		const CVector& position, float radius);
-	//eƒ|ƒCƒ“ƒ^‚Ìæ“¾
+	//è¦ªãƒã‚¤ãƒ³ã‚¿ã®å–å¾—
 	CCharacter3* Parent();
-	//•`‰æ
+	//æç”»
 	void Render();
 protected:
-	EType mType;//ƒRƒ‰ƒCƒ_ƒ^ƒCƒv
-	//’¸“_
+	EType mType;//ã‚³ãƒ©ã‚¤ãƒ€ã‚¿ã‚¤ãƒ—
+	//é ‚ç‚¹
 	CVector mV[3];
 
-	CCharacter3* mpParent;//e
-	const CMatrix* mpMatrix;//es—ñ
-	float mRadius;	//”¼Œa
+	CCharacter3* mpParent;//è¦ª
+	const CMatrix* mpMatrix;//è¦ªè¡Œåˆ—
+	float mRadius;	//åŠå¾„
 };
 #endif
 
