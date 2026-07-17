@@ -52,24 +52,6 @@ public:
 	//retrun:true（衝突している）false(衝突していない)
 	static bool Collision(CCollider* m, CCollider* o);
 	
-	//CalcCalcPointLineDist(点, 始点, 終点, 線上の最短点, 割合)
-    //点と線(始点、終点を通る直線)の最短距離を求める
-	static float CalcPointLineDist(const CVector& p, const CVector& s, const CVector& e,
-		CVector* mp, float* t);
-
-	//CalcLineLineDist(始点1, 終点1, 始点2, 終点2, 交点1, 交点2, 比率1, 比率2)
-    //2線間nの最短距離を返す
-	static float CalcLineLineDist(
-		const CVector& s1, //始点1
-		const CVector& e1, //終点1
-		const CVector& s2, //始点2
-		const CVector& e2, //終点2
-		CVector* mp1, //交点1
-		CVector* mp2, //交点2
-		float* t1, //比率1
-		float* t2 //比率2
-	);
-	
 
 
 	~CCollider();
