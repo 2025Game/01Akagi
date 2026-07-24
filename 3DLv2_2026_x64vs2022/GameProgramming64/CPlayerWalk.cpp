@@ -8,11 +8,11 @@
 
 void CPlayerWalk::Start(CXCharacter* parent)
 {
-	//親䛾ポインタを保存
+	//親のポインタを保存
 	mpParent = parent;
-	//アニメーション䛾変更
+	//アニメーションの変更
 	mpParent->ChangeAnimation(1, true, 60);
-	mState = EState::EWALK; //状態䛾種類を歩䛟䛻䛩る
+	mState = EState::EWALK; //状態の種類を歩くにする
 }
 
 

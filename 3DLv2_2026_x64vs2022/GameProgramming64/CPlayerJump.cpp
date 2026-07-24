@@ -26,13 +26,13 @@ void CPlayerJump::Collision(CCollider* m, CCollider* o)
 	// 自身のコライダタイプの判定
 	switch (m->Type())
 	{
-	case CCollider::EType::ELINE: // 線分コライダ
+	case CCollider::EType::ECAPSULE: // カプセルコライダ
 		// 相手のコライダが三角コライダの時
 		if (o->Type() == CCollider::EType::ETRIANGLE)
 		{
 			CVector adjusts; // 調整用ベクトル
-			// 三角形と線分の衝突判定
-			if (CCollider::CollisionTriangleLine(o, m, &adjusts))
+			// 三角形とカプセルの衝突判定
+			if (CCollider::CollisionTriangleCapsule (o, m, &adjusts))
 			{
 				// 待機状態にする
 				mState = EState::EIDLE;

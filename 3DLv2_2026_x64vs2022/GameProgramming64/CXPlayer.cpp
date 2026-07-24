@@ -81,6 +81,7 @@ void CXPlayer::Collision(CCollider* m, CCollider* o)
 
 	//自身のコライダタイプの判定
 	switch (m->Type()) {
+	/*
 	case CCollider::EType::ELINE://線分コライダ
 		//相手のコライダが三角コライダの時
 		if (o->Type() == CCollider::EType::ETRIANGLE)
@@ -122,6 +123,7 @@ void CXPlayer::Collision(CCollider* m, CCollider* o)
 			}
 		}
 		break;
+	*/
 	case CCollider::EType::ECAPSULE:
 		if (o->Type() == CCollider::EType::ECAPSULE)
 		{
@@ -142,17 +144,47 @@ void CXPlayer::Collision(CCollider* m, CCollider* o)
 				CTransform::Update();
 			}
 		}
+		if (o->Type() == CCollider::EType::ETRIANGLE)
+		{
+			CVector adjust;//調整用ベクトル
+			//三角形とカプセルの衝突判定
+			if (CCollider::CollisionTriangleCapsule(o, m, &adjust))
+			{
+				//位置の更新(mPosition + adjust)
+				//現在でのワールド座標の位置
+				mPosition = (CVector() * mMatrix + adjust);
+				//前方の位置を求める
+				CVector forward = (CVector(0.0f, 0.0f, 1.0f) * mMatrix + adjust);
+				if (o->Parent())
+				{
+					mPosition = mPosition *
+						o->Parent()->CombinedMatrix().Inverse();
+
+					//親のローカル座標へ変換
+					forward = forward * o->Parent()->CombinedMatrix().Inverse();
+
+				}
+
+				//ローカル座標での向きを求める
+				forward = forward - mPosition;
+				//atan2fとRAD_TO_DEGを使ってY軸の回転角度を度数で求める
+				//求めた回転角度をY軸に設定する
+				mRotation = CVector(mRotation.X(), atan2f(forward.X(), forward.Z()) * RAD_TO_DEG, mRotation.Z());
+
+
+				//親の設定
+				mpParent = o->Parent();
+
+				//行列の更新
+				CTransform::Update();
+			}
+		}
 		break;
 	}
 }
 //衝突処理
 void CXPlayer::Collision()
 {
-	//コライダの優先度変更
-	mColliderLine.ChangePriority();
-	//衝突処理を実行
-	CCollisionManager::Instance()->Collision(
-		&mColliderLine, COLLISIONRANGE);
 	
 	mColliderCapsule.ChangePriority();
 	CCollisionManager::Instance()->Collision(
