@@ -11,7 +11,7 @@ public:
 	virtual ~CXCharacter() {
 		SAFE_DELETE_ARRAY(mpCombinedMatrix);
 	}
-
+	CModelX* Model() { return mpModel; }
 	void Update();
 	CXCharacter();
 	//‰Šú‰»ˆ—

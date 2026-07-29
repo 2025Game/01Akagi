@@ -18,8 +18,8 @@ public:
 private:
 	static CModelX msModel;
 	CColliderCapsule mCollider; //カプセルコライダ
-	EState mState;
-	CState* mpState;
-	std::unique_ptr<CPaladinIdle> mpIdle;
+	EState mState;    //状態の保持
+	CState* mpState;  //状態処理
+	std::unique_ptr<CPaladinIdle> mpIdle;  //待機状態
 };
 #endif

@@ -4,6 +4,7 @@
 class CPaladinIdle : public CState
 {
 public:
+	CPaladinIdle() {};
 	CPaladinIdle(CXCharacter* parent);
 	void Start() override;
 	void Update() override;

@@ -15,7 +15,7 @@ class CState
 {
 public:
 	virtual ~CState() {};
-	virtual void Start();
+	virtual void Start() {};
 	//状態?開始
 	virtual void Start(CXCharacter* parent) {};
 	//状態?更新
