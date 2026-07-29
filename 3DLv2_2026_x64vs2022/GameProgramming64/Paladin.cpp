@@ -34,11 +34,11 @@ CPaladin::CPaladin(const CVector& pos, const CVector& rot,
 	mScale = scale;
 
 	// 待機状態の作成
-	mpIdle = std::make_unique<CPaladinIdle>();
+	mpIdle = std::make_unique<CPaladinIdle>(this);
 	
 	
 	mpState = mpIdle.get();
-	mpState->Start(this);
+	mpState->Start();
 	mState = mpState->State();
 	//状態の更新
 	mpState->Update();
@@ -51,25 +51,6 @@ void CPaladin::Collision(CCollider* m, CCollider* o)
 	//自身のコライダタイプの判定
 	switch (m->Type()) {
 	case CCollider::EType::ECAPSULE:
-		if (o->Type() == CCollider::EType::ECAPSULE)
-		{
-			CVector adjust;//調整用ベクトル
-			//カプセルとカプセルの衝突判定
-			if (CCollider::CollisionCapsuleCapsule(m, o, &adjust))
-			{
-				//衝突している場合、プレイヤーの位置を調整する
-				mPosition = CVector() * mMatrix + adjust;
-				//親子関係がある場合
-				if (m->Parent() && m->Parent()->Parent())
-				{
-					//親のローカル座標へ変換
-					mPosition = mPosition *
-						m->Parent()->Parent()->CombinedMatrix().Inverse();
-				}
-				//行列の更新
-				CTransform::Update();
-			}
-		}
 		if (o->Type() == CCollider::EType::ETRIANGLE)
 		{
 			CVector adjust;//調整用ベクトル
@@ -117,7 +98,6 @@ void CPaladin::Update()
 	// 親クラスの更新
 	CXCharacter::Update();
 
-	CXCharacter::Update();
 	mCollider.Update();
 }
 

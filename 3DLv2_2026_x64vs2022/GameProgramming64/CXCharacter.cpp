@@ -1,5 +1,6 @@
 #include "CXCharacter.h"
 
+
 CXCharacter::CXCharacter()
 {
 	mScale = CVector(1.0f, 1.0f, 1.0f);
@@ -62,7 +63,7 @@ void CXCharacter::ChangeAnimation(int index, bool loop, float framesize) {
  Update
  更新する
  matrix：移動、回転、拡大縮小の行列
-*/
+ */
 void CXCharacter::Update(CMatrix& matrix) {
 	for (size_t i = 0; i < mpModel->AnimationSet().size(); i++)
 	{
