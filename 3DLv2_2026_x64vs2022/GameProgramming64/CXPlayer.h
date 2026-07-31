@@ -20,10 +20,12 @@ public:
 	void Collision(CCollider* m, CCollider* o);
 	//衝突処理
 	void Collision();
-
+	const CMatrix& FrameCombinedMatrix(const char* name);
+	void Init(CModelX* model);
 private:
 	CColliderLine mColliderLine;
 	CColliderCapsule mColliderCapsule;
+	CColliderCapsule mColliderSword; //カプセルコライダ
 	EState mState;        // 状態の保持
 	CState* mpState;      // 状態処理
 	std::unique_ptr <CXPlayerIdle> mpIdle;     //待機状態

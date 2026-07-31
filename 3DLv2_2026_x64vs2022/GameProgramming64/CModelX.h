@@ -172,6 +172,7 @@ class CModelXFrame {
 public:
 	CModelXFrame();
 	const CMatrix& CombinedMatrix();
+	char* Name() { return mpName; }
 	//‡¬s—ñ‚Ìì¬
 	void AnimateCombined(CMatrix* parent);
 	size_t Index();
