@@ -27,6 +27,11 @@ void CCharacter3::Model(CModel* m)
 	mpModel = m;
 }
 
+EState& CCharacter3::State()
+{
+	return mState;
+}
+
 //•`‰æˆ—
 void CCharacter3::Render()
 {

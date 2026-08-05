@@ -3,6 +3,7 @@
 #include "CXCharacter.h"
 #include "CColliderCapsule.h"
 #include "CPaladinIdle.h"
+#include "CPaladinDamage.h"
 class CPaladin : public CXCharacter
 {
 public:
@@ -18,8 +19,9 @@ public:
 private:
 	static CModelX msModel;
 	CColliderCapsule mCollider; //カプセルコライダ
-	EState mState;    //状態の保持
+	//EState mState;    //状態の保持
 	CState* mpState;  //状態処理
 	std::unique_ptr<CPaladinIdle> mpIdle;  //待機状態
+	std::unique_ptr<CPaladinDamage> mpDamage;  //ダメージ状態
 };
 #endif

@@ -4,7 +4,7 @@
 #include "CXCharacter.h"
 #include "CColliderLine.h"
 #include "CColliderCapsule.h"
-#include "CState.h"
+//#include "CState.h"
 #include "CXPlayerIdle.h"
 #include "CPlayerWalk.h"
 #include "CPlayerAttack.h"
@@ -26,7 +26,7 @@ private:
 	CColliderLine mColliderLine;
 	CColliderCapsule mColliderCapsule;
 	CColliderCapsule mColliderSword; //カプセルコライダ
-	EState mState;        // 状態の保持
+	//EState mState;        // 状態の保持
 	CState* mpState;      // 状態処理
 	std::unique_ptr <CXPlayerIdle> mpIdle;     //待機状態
 	std::unique_ptr<CPlayerWalk> mpWalk;       //歩く状態

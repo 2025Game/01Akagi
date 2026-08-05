@@ -28,3 +28,38 @@ void CPaladinIdle::Start()
 void CPaladinIdle::Update()
 {
 }
+
+void CPaladinIdle::Collision(CCollider* m, CCollider* o)
+{
+	// 自身のコライダタイプの判定
+	switch (m->Type())
+	{
+	case CCollider::EType::ECAPSULE: // カプセルコライダ
+		// 相手のコライダがカプセルコライダの時
+		if (o->Type() == CCollider::EType::ECAPSULE)
+		{
+			
+
+			CVector adjusts; // 調整用ベクトル
+			
+
+
+			// カプセルとカプセルの衝突判定
+			if (CCollider::CollisionCapsuleCapsule(o, m, &adjusts))
+			{
+				
+				if (o->Parent()->Tag() == ETag::EPLAYER &&
+					o->Parent()->State() == EState::EATTACK &&
+					o->Tag() == ETag::ESWORD)
+				{
+					// ダメージ状態にする
+					mState = EState::EDAMAGE;
+					
+
+				}
+				
+			}
+		}
+		break;
+	}
+}

@@ -6,6 +6,7 @@
 //モデルクラスのインクルード
 #include "CModel.h"
 #include "CTask.h"
+#include "CState.h"
 class CCollider;
 /*
 キャラクタークラス
@@ -28,10 +29,15 @@ public:
 	//モデルの設定
 	//Model(モデルクラスのポインタ)
 	void Model(CModel* m);
+
+	//状態の取得
+	EState& State();
+
 	//描画処理
 	void Render();
 protected:
 	CModel* mpModel; //モデルのポインタ
+	EState mState; //状態の種類
 };
 
 #endif

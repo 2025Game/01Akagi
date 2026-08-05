@@ -42,6 +42,12 @@ CPaladin::CPaladin(const CVector& pos, const CVector& rot,
 	mState = mpState->State();
 	//状態の更新
 	mpState->Update();
+
+
+
+	//ダメージ状態の作成
+	mpDamage = std::make_unique<CPaladinDamage>(this);
+	
 }
 void CPaladin::Collision(CCollider* m, CCollider* o)
 {
@@ -91,7 +97,25 @@ void CPaladin::Collision(CCollider* m, CCollider* o)
 }
 void CPaladin::Update()
 {
+	// 状態の更新
+	mpState->Update();
+	//状態の切り替え
+	if (mState != mpState->State())
+	{
+		mState = mpState->State();
+		switch (mState) {
+		case EState::EIDLE:
+			mpState = mpIdle.get();
+			break;
+		case EState::EDAMAGE:
+			mpState = mpDamage.get();
+			break;
+		default:
+			break;
+		}
+		mpState->Start();
 
+	}
 	// GRAVITYの大きさぶんだけ、下方向へ移動させる
 	mPosition = mPosition - CVector(0.0f, GRAVITY, 0.0f);
 

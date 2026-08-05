@@ -30,6 +30,11 @@ CXPlayer::CXPlayer()
 	//ジャンプ状態の作成
 	mpJump = std::make_unique<CPlayerJump>();
 
+	//タグの設定
+	Tag(ETag::EPLAYER);
+	mColliderCapsule.Tag(ETag::EPLAYER);
+	mColliderSword.Tag(ETag::ESWORD);
+
 	//カメラの親をプレイヤーにする
 	CCamera::Instance()->Parent(this);
 

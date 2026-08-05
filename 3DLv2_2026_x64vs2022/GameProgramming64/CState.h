@@ -9,7 +9,8 @@ enum class EState
 	EIDLE, //待機
 	EWALK, //歩き
 	EATTACK, // 攻撃
-	EJUMP   // ジャンプ
+	EJUMP,   // ジャンプ
+	EDAMAGE  // ダメージ
 };
 class CState
 {
