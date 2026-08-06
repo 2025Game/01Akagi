@@ -20,8 +20,13 @@ public:
 	//表示終了
 	static void End();
 private:
-private:
-	CCamera() {}
+	//マウスの座標
+	double mX, mY;
+	CCamera() 
+	{
+		//マウスの位置を取得する
+		mInput.MouseGetPosition(&mX, &mY);
+	}
 	static CCamera* spInstance;
 	CInput mInput;
 };

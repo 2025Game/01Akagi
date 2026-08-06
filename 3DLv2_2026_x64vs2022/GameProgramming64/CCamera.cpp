@@ -1,6 +1,8 @@
 #include "CCamera.h"
 #include "glut.h"
 
+#define ROTATION_RATE 0.5f
+
 CCamera* CCamera::spInstance = nullptr;
 
 CCamera* CCamera::Instance()
@@ -23,6 +25,25 @@ void CCamera::Update()
 	{
 		mRotation += CVector(0.0f, -2.0f, 0.0f);
 	}
+	if (mInput.Key('N'))
+	{
+		//マウスカーソルを非表示にする
+		mInput.MouseShowCursor(false);
+	}
+	if (mInput.Key('M'))
+	{
+		//マウスカーソルを表示する
+		mInput.MouseShowCursor(true);
+	}
+
+	double x, y;
+	//マウスの位置を取得する
+	mInput.MouseGetPosition(&x, &y);
+	//前回のマウスの位置と今回のマウスの位置の差分を計算して、
+	//カメラの回転に反映する
+	Rotation(Rotation() + CVector(0.0f, (mX - x) * ROTATION_RATE, 0.0f));
+	//マウスの位置を保存する
+	mX = x;
 
 	CTransform::Update();
 	//カメラの位置、注視点、上方向を計算する

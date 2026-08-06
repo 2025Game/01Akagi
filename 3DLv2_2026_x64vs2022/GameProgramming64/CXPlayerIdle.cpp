@@ -40,4 +40,10 @@ void CXPlayerIdle::Update()
 	{
 		mState = EState::EJUMP;
 	}
+	//マウスの左ボタンが押されたら
+	if (mInput.Key(VK_LBUTTON))
+	{
+		mState = EState::EATTACK;
+	}
+	
 }
