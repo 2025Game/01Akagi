@@ -13,6 +13,8 @@ public:
 	void Update();
 	void Parent(CXCharacter* parent);
 
+	CMatrix ModelViewInverse();
+
 	//表示エリアの設定
 	//Start(左座標,右座標,下座標,上座標)
 	static void Start(double left, double right
@@ -29,4 +31,7 @@ private:
 	}
 	static CCamera* spInstance;
 	CInput mInput;
+
+	CMatrix mModelViewMatrix; //モデルビュー行列
+	CMatrix mModelViewInverse; //モデルビュー逆行列
 };
