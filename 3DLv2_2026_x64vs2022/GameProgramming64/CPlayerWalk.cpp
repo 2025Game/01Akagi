@@ -19,7 +19,7 @@ void CPlayerWalk::Start(CXCharacter* parent)
 
 void CPlayerWalk::Update()
 {
-	if (mInput.Key('W'))
+	if (mInput.Key('W') || mInput.Key('S') || mInput.Key('D') || mInput.Key('A'))
 	{
 		CVector p = mpParent->Position();
 		mpParent->Position(p +
@@ -30,6 +30,7 @@ void CPlayerWalk::Update()
 		//Wキーが押されていないときは待機状態にする
 		mState = EState::EIDLE;
 	}
+
 
 	// Aキーで左回転、Dキーで右回転
 	if (mInput.Key('A'))
@@ -53,13 +54,50 @@ void CPlayerWalk::Update()
 		mState = EState::EJUMP;
 	}
 
-	//1.カメラの右方向ベクトルを取得する
+	//カメラの右方向ベクトルを取得する
 	CVector cx;
-	cx = CCamera::Instance()->ModelViewInverse().VectorX();
+	// 進行すべき前方向のベクトルを取得する
+	CVector cz;
+
+	if (mInput.Key('W'))
+	{
+		cx = CCamera::Instance()->ModelViewInverse().VectorX();
+		cz = CCamera::Instance()->ModelViewInverse().VectorZ() * -1;
+	}
+	if (mInput.Key('S'))
+	{
+		cx = CCamera::Instance()->ModelViewInverse().VectorX() * -1;
+		cz = CCamera::Instance()->ModelViewInverse().VectorZ();
+	}
+	if (mInput.Key('D'))
+	{
+		cx = CCamera::Instance()->ModelViewInverse().VectorZ();
+		cz = CCamera::Instance()->ModelViewInverse().VectorX();
+	}
+	if (mInput.Key('A'))
+	{
+		cx = CCamera::Instance()->ModelViewInverse().VectorZ() * -1;
+		cz = CCamera::Instance()->ModelViewInverse().VectorX();
+	}
+
+
 	// 2.プレイヤーの前方向ベクトルを取得する
 	CVector fwd = mpParent->CombinedMatrix().VectorZ();
-	//3.内積を計算して、回転量 (10度以内)を求める
-	CVector rot(0.0f, cx.Dot(fwd) * 10.0f, 0.0f);
+
+
+
+	//内積を計算して、回転量を求める
+	float dx = cx.Dot(fwd);
+	float dz = cz.Dot(fwd);
+	if (abs(dx) < 0.01f)
+	{
+		if (dz < 0.0f)
+		{
+			dx = 1.0f;
+		}
+	}
+	CVector rot(0.0f, dx * 10.0f, 0.0f);
+	
 
 	//4.プレイヤーをカメラ方向へ回転させるる
 	mpParent->Rotation(mpParent->Rotation() + rot);

@@ -18,17 +18,17 @@ void CXPlayerIdle::Update()
 	// Aキーで左回転、Dキーで右回転
 	if (mInput.Key('A'))
 	{
-		CVector r = mpParent->Rotation() +
-			CVector(0.0f, ROTATIONSPEED, 0.0f);
-		mpParent->Rotation(r);
+		mState = EState::EWALK;
 	}
 	if (mInput.Key('D'))
 	{
-		CVector r = mpParent->Rotation() +
-			CVector(0.0f, -ROTATIONSPEED, 0.0f);
-		mpParent->Rotation(r);
+		mState = EState::EWALK;
 	}
 	if (mInput.Key('W'))
+	{
+		mState = EState::EWALK;
+	}
+	if (mInput.Key('S'))
 	{
 		mState = EState::EWALK;
 	}
