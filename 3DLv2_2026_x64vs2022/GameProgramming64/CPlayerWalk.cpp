@@ -31,7 +31,7 @@ void CPlayerWalk::Update()
 		mState = EState::EIDLE;
 	}
 
-
+	/*
 	// Aキーで左回転、Dキーで右回転
 	if (mInput.Key('A'))
 	{
@@ -45,6 +45,7 @@ void CPlayerWalk::Update()
 			CVector(0.0f, -ROTATIONSPEED, 0.0f);
 		mpParent->Rotation(r);
 	}
+	*/
 	if (mInput.Key('I'))
 	{
 		mState = EState::EATTACK;
@@ -77,7 +78,7 @@ void CPlayerWalk::Update()
 	if (mInput.Key('A'))
 	{
 		cx = CCamera::Instance()->ModelViewInverse().VectorZ() * -1;
-		cz = CCamera::Instance()->ModelViewInverse().VectorX();
+		cz = CCamera::Instance()->ModelViewInverse().VectorX() * -1;
 	}
 
 
