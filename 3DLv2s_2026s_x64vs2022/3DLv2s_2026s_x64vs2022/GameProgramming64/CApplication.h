@@ -14,6 +14,7 @@
 #include "CTaskManager.h"
 #include "CColliderTriangle.h"
 #include "CColliderMesh.h"
+#include  "CModelX.h"
 
 class CApplication
 {
@@ -78,4 +79,6 @@ private:
 	CBullet* mpBullet;
 	static CTexture mTexture;
 	CEnemy* mpEnemy;
+
+	CModelX mModelX;
 };
