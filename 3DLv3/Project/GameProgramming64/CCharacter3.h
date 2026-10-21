@@ -1,0 +1,45 @@
+
+#ifndef CCHARACTER3_H
+#define CCHARACTER3_H
+//変換行列クラスのインクルード
+#include "CTransform.h"
+//モデルクラスのインクルード
+#include "CModel.h"
+#include "CTask.h"
+#include "CState.h"
+class CCollider;
+/*
+キャラクタークラス
+ゲームキャラクタの基本的な機能を定義する
+*/
+class CCharacter3 : public CTransform, public CTask {
+public:
+	//コンストラクタ
+	CCharacter3(int priority);
+
+	//衝突処理
+	virtual void Collision(CCollider* m, CCollider* o) {}
+
+	//コンストラクタ
+	CCharacter3();
+
+	//デストラクタ
+	~CCharacter3();
+
+	//モデルの設定
+	//Model(モデルクラスのポインタ)
+	void Model(CModel* m);
+
+	//状態の取得
+	EState& State();
+
+	//描画処理
+	void Render();
+protected:
+	CModel* mpModel; //モデルのポインタ
+	EState mState; //状態の種類
+};
+
+#endif
+
+
