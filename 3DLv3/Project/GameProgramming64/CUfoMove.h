@@ -8,6 +8,8 @@ class CUfoMove : public CState
 public:
 	void Start(CXCharacter* parent) override;
 	void Update() override;
+private:
+	CInput mInput;
 };
 
 #endif // !CUFO_MOVE_H

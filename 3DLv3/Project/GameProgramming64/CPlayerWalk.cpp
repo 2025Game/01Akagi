@@ -100,7 +100,7 @@ void CPlayerWalk::Update()
 	CVector rot(0.0f, dx * 10.0f, 0.0f);
 	
 
-	//4.プレイヤーをカメラ方向へ回転させるる
+	//4.プレイヤーをカメラ方向へ回転させる
 	mpParent->Rotation(mpParent->Rotation() + rot);
 	//カメラは逆回転させる
 	//プレイヤーが回転してもカメラも一緒に回転するので、回わってしまうため。
