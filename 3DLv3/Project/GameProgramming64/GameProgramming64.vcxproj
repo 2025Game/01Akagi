@@ -68,6 +68,7 @@
     <ClCompile Include="CUfo.cpp" />
     <ClCompile Include="CUfoIdle.cpp" />
     <ClCompile Include="CUfoMove.cpp" />
+    <ClCompile Include="CUfoMoveFast.cpp" />
     <ClCompile Include="CUi.cpp" />
     <ClCompile Include="CVector.cpp" />
     <ClCompile Include="CXCharacter.cpp" />
@@ -131,6 +132,7 @@
     <ClInclude Include="CTriangle.h" />
     <ClInclude Include="CUfoIdle.h" />
     <ClInclude Include="CUfoMove.h" />
+    <ClInclude Include="CUfoMoveFast.h" />
     <ClInclude Include="CUi.h" />
     <ClInclude Include="CVector.h" />
     <ClInclude Include="CVertex.h" />

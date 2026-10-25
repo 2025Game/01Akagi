@@ -19,8 +19,10 @@ CUfo::CUfo()
 	mpState->Start(this);
 	mState = mpState->State();
 
-	//•à‚­ó‘Ô‚Ìì¬
+	//“®‚­ó‘Ô‚Ìì¬
 	mpMove = std::make_unique<CUfoMove>();
+	//‚Í‚â‚­“®‚­ó‘Ô‚Ìì¬
+	mpMoveFast = std::make_unique<CUfoMoveFast>();
 
 	//ƒ^ƒO‚Ìİ’è
 	Tag(ETag::EPLAYER);
@@ -45,6 +47,9 @@ void CUfo::Update()
 			break;
 		case EState::EMOVE:
 			mpState = mpMove.get();
+			break;
+		case EState::EMOVE_FAST:
+			mpState = mpMoveFast.get();
 			break;
 		default:
 			break;

@@ -5,6 +5,7 @@
 #include "CCollider.h"
 #include "CUfoIdle.h"
 #include "CUfoMove.h"
+#include "CUfoMoveFast.h"
 
 class CUfo : public CXCharacter
 {
@@ -22,6 +23,7 @@ private:
 	CState* mpState;  //ó‘Ôˆ—
 	std::unique_ptr <CUfoIdle> mpIdle;     //‘Ò‹@ó‘Ô
 	std::unique_ptr<CUfoMove> mpMove;       //“®‚­ó‘Ô
+	std::unique_ptr<CUfoMoveFast> mpMoveFast;
 };
 
 #endif // !CUFO_H

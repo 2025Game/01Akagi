@@ -3,9 +3,9 @@
 #include "CCamera.h"
 
 //移動速度
-#define VELOCITY 0.1f
+#define VELOCITY 0.5f
 // 回転速度
-#define ROTATIONSPEED 2.0f
+#define ROTATIONSPEED 5.0f
 
 void CUfoMove::Start(CXCharacter* parent)
 {
@@ -26,7 +26,6 @@ void CUfoMove::Update()
 	}
 	else if (mInput.Key(VK_SHIFT))
 	{
-		printf("押されました");
 		CVector p = mpParent->Position();
 		mpParent->Position(p +
 			mpParent->MatrixRotate().VectorY() * -VELOCITY);
@@ -47,12 +46,12 @@ void CUfoMove::Update()
 	}
 	else
 	{
-		//Wキーが押されていないときは待機状態にする
+		//A/W/S/Dキーが押されていないときは待機状態にする
 		mState = EState::EIDLE;
 	}
-	//カメラの右方向ベクトルを取得する
+	//1.カメラの右方向ベクトルを取得する
 	CVector cx;
-	// 進行すべき前方向のベクトルを取得する
+	//進行すべき前方向のベクトルを取得する
 	CVector cz;
 
 	if (mInput.Key('W'))
@@ -76,12 +75,12 @@ void CUfoMove::Update()
 		cz = CCamera::Instance()->ModelViewInverse().VectorX() * -1;
 	}
 
-	// 2.プレイヤーの前方向ベクトルを取得する
+	//2.プレイヤーの前方向ベクトルを取得する
 	CVector fwd = mpParent->CombinedMatrix().VectorZ();
 
 
 
-	//内積を計算して、回転量を求める
+	//3.内積を計算して、回転量を求める
 	float dx = cx.Dot(fwd);
 	float dz = cz.Dot(fwd);
 	if (abs(dx) < 0.01f)
@@ -94,7 +93,7 @@ void CUfoMove::Update()
 	CVector rot(0.0f, dx * 10.0f, 0.0f);
 
 
-	//4.プレイヤーをカメラ方向へ回転させるる
+	//4.プレイヤーをカメラ方向へ回転させる
 	mpParent->Rotation(mpParent->Rotation() + rot);
 	//カメラは逆回転させる
 	//プレイヤーが回転してもカメラも一緒に回転するので、回わってしまうため。

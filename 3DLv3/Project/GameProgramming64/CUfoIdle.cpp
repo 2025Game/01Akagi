@@ -39,6 +39,10 @@ void CUfoIdle::Update()
 	{
 		mState = EState::EMOVE;
 	}
+	if (mInput.Key(VK_RBUTTON))
+	{
+		mState = EState::EMOVE_FAST;
+	}
 	
 	
 }

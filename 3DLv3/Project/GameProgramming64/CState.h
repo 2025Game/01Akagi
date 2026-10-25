@@ -8,7 +8,8 @@ enum class EState
 	ENONE, //状態?し
 	EIDLE, //待機
 	EWALK, //歩き（生物）
-	EMOVE,  // 動く(モノ)
+	EMOVE,  //動く(モノ)
+	EMOVE_FAST, //はやく動く(モノ)
 	EATTACK, // 攻撃
 	EJUMP,   // ジャンプ
 	EDAMAGE  // ダメージ

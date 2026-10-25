@@ -231,6 +231,9 @@
     <ClCompile Include="CUfoMove.cpp">
       <Filter>ソース ファイル\Game\Character\UFO</Filter>
     </ClCompile>
+    <ClCompile Include="CUfoMoveFast.cpp">
+      <Filter>ソース ファイル\Game\Character\UFO</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CApplication.h">
@@ -420,6 +423,9 @@
       <Filter>ソース ファイル\Game\Character\UFO</Filter>
     </ClInclude>
     <ClInclude Include="CUfoMove.h">
+      <Filter>ソース ファイル\Game\Character\UFO</Filter>
+    </ClInclude>
+    <ClInclude Include="CUfoMoveFast.h">
       <Filter>ソース ファイル\Game\Character\UFO</Filter>
     </ClInclude>
   </ItemGroup>
