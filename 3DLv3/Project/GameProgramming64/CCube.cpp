@@ -28,6 +28,9 @@ CCube::CCube()
 		CVector(-1.0f, 2.0f, 1.0f),
 		CVector(1.0, 2.0f, 1.0f)
 		);
+
+	
+	Tag(ETag::ECube);
 }
 void CCube::Update()
 {

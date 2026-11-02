@@ -7,7 +7,9 @@ class CCollisionManager;
 enum class ETag {
 	ENONE, //未設定
 	EPLAYER, //プレイヤー
+	ERANCHER, //牧場主
 	ESWORD, //剣
+	ECube   //壁(テスト用) TODO:後で消す
 };
 /*
 タスククラス

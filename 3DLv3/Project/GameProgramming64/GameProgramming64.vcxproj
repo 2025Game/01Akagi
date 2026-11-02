@@ -55,6 +55,9 @@
     <ClCompile Include="CPlayerAttack.cpp" />
     <ClCompile Include="CPlayerWalk.cpp" />
     <ClCompile Include="CPoint.cpp" />
+    <ClCompile Include="CRancher.cpp" />
+    <ClCompile Include="CRancherIdle.cpp" />
+    <ClCompile Include="CRancherWalk.cpp" />
     <ClCompile Include="CRectangle.cpp" />
     <ClCompile Include="CSceneBase.cpp" />
     <ClCompile Include="CShader.cpp" />
@@ -118,6 +121,9 @@
     <ClInclude Include="CPlayerJump.h" />
     <ClInclude Include="CPlayerWalk.h" />
     <ClInclude Include="CPoint.h" />
+    <ClInclude Include="CRancher.h" />
+    <ClInclude Include="CRancherIdle.h" />
+    <ClInclude Include="CRancherWalk.h" />
     <ClInclude Include="CRectangle.h" />
     <ClInclude Include="CSceneBase.h" />
     <ClInclude Include="CShader.h" />

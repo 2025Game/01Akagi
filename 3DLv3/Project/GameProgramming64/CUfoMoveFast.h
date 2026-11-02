@@ -3,7 +3,6 @@
 #include "CState.h"
 #include "CInput.h"
 
-
 class CUfoMoveFast : public CState
 {
 public:

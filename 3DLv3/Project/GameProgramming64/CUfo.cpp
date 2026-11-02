@@ -5,6 +5,19 @@
 #define UFO_MODEL "res\\paladin\\Paladin WProp J Nordstrom@Idle.fbx.x"
 #define UFO_RADIUS 2.0f
 
+//UFOのインスタンス
+CUfo* CUfo::mpInstance = nullptr;
+
+//インスタンスの取得
+CUfo* CUfo::Instance()
+{
+	//インスタンスが無ければ
+	if (mpInstance == nullptr)
+	{	//インスタンスを生成する
+		mpInstance = new CUfo();
+	}
+	return mpInstance;
+}
 
 CUfo::CUfo()
 	:mCollider(this, &mMatrix, CVector(0.0f,1.5f,0.0f), UFO_RADIUS)
@@ -31,6 +44,7 @@ CUfo::CUfo()
 	//カメラの親をプレイヤーにする
 	CCamera::Instance()->Parent(this);
 	
+	mpInstance = this;
 }
 
 void CUfo::Update()
@@ -81,7 +95,19 @@ void CUfo::Collision(CCollider* m, CCollider* o)
 	//自身のコライダタイプの判定
 	switch (m->Type()) {
 	case CCollider::EType::ESPHERE:
-		
+		if (o->Type() == CCollider::EType::ETRIANGLE)
+		{
+			CVector adjust;//調整用ベクトル
+			if (CCollider::CollisionTriangleSphere(o, m, &adjust));
+			{
+				//位置の更新(mPosition + adjust)
+				//現在でのワールド座標の位置
+				mPosition = (CVector() * mMatrix + adjust);
+			}
+
+			//行列の更新
+			CTransform::Update();
+		}
 		break;
 	}
 }
@@ -89,6 +115,9 @@ void CUfo::Collision(CCollider* m, CCollider* o)
 void CUfo::Collision()
 {
 	mCollider.ChangePriority();
+	CCollisionManager::Instance()->Collision(
+		&mCollider, COLLISIONRANGE
+	);
 }
 void CUfo::Init(CModelX* model)
 {

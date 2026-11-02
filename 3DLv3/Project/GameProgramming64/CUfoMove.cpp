@@ -5,7 +5,7 @@
 //移動速度
 #define VELOCITY 0.5f
 // 回転速度
-#define ROTATIONSPEED 5.0f
+#define ROTATIONSPEED 10.0f
 
 void CUfoMove::Start(CXCharacter* parent)
 {
@@ -90,7 +90,7 @@ void CUfoMove::Update()
 			dx = 1.0f;
 		}
 	}
-	CVector rot(0.0f, dx * 10.0f, 0.0f);
+	CVector rot(0.0f, dx * 100.0f, 0.0f);
 
 
 	//4.プレイヤーをカメラ方向へ回転させる

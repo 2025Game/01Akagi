@@ -6,6 +6,7 @@
 #include "CCamera.h"
 #include "Paladin.h"
 #include "CUfo.h"
+#include "CRancher.h"
 
 //背景モデルデータの指定
 #define MODEL_BACKGROUND "res\\sky.obj", "res\\sky.mtl"
@@ -34,6 +35,7 @@ void CGameScene::Load()
 	mColliderMesh.Set(nullptr, nullptr, &mBackGround);
 
 	CPaladin* paladin = new CPaladin(CVector(0.0f, 5.0f, -9.0f));
+	CRancher* rancher = new CRancher(CVector(5.0f, 5.0f, 0.0f));
 
 	CCharacter3* cube = new CCube();
 	cube->Position(CVector(0.0f, 0.0f, -9.0f));
@@ -48,6 +50,10 @@ void CGameScene::Update()
 	//gluLookAt(1.0f, 2.0f, 10.0f,
 	//	0.0f, 2.0f, 0.0f,
 	//	0.0f, 1.0f, 0.0f);
+
+	//削除フラグが立っているタスクを削除
+	CTaskManager::Instance()->Delete();
+
 	//全キャラクタの更新
 	CTaskManager::Instance()->Update();
 
@@ -57,7 +63,7 @@ void CGameScene::Update()
 	//カメラの更新
 	CCamera::Instance()->Update();
 
-	//課題 全キャラクタの描画
+	//全キャラクタの描画
 	CTaskManager::Instance()->Render();
 
 	//コライダの描画

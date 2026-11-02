@@ -41,8 +41,6 @@ void CPaladinIdle::Collision(CCollider* m, CCollider* o)
 			
 
 			CVector adjusts; // 調整用ベクトル
-			
-
 
 			// カプセルとカプセルの衝突判定
 			if (CCollider::CollisionCapsuleCapsule(o, m, &adjusts))

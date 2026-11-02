@@ -55,6 +55,9 @@
     <Filter Include="ソース ファイル\Game\Character\UFO">
       <UniqueIdentifier>{c7a17f3c-269a-46cb-b65d-252718283245}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\Game\Character\Rancher">
+      <UniqueIdentifier>{632292de-c072-45fc-af6b-d3015459adab}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CApplication.cpp">
@@ -233,6 +236,15 @@
     </ClCompile>
     <ClCompile Include="CUfoMoveFast.cpp">
       <Filter>ソース ファイル\Game\Character\UFO</Filter>
+    </ClCompile>
+    <ClCompile Include="CRancher.cpp">
+      <Filter>ソース ファイル\Game\Character\Rancher</Filter>
+    </ClCompile>
+    <ClCompile Include="CRancherIdle.cpp">
+      <Filter>ソース ファイル\Game\Character\Rancher</Filter>
+    </ClCompile>
+    <ClCompile Include="CRancherWalk.cpp">
+      <Filter>ソース ファイル\Game\Character\Rancher</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -427,6 +439,15 @@
     </ClInclude>
     <ClInclude Include="CUfoMoveFast.h">
       <Filter>ソース ファイル\Game\Character\UFO</Filter>
+    </ClInclude>
+    <ClInclude Include="CRancher.h">
+      <Filter>ソース ファイル\Game\Character\Rancher</Filter>
+    </ClInclude>
+    <ClInclude Include="CRancherIdle.h">
+      <Filter>ソース ファイル\Game\Character\Rancher</Filter>
+    </ClInclude>
+    <ClInclude Include="CRancherWalk.h">
+      <Filter>ソース ファイル\Game\Character\Rancher</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
