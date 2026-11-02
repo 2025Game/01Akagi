@@ -26,6 +26,12 @@ float* CMatrix::M() const
 	return (float*)mM[0];
 }
 
+int CMatrix::Size()
+{
+	return sizeof(mM) / sizeof(float);
+}
+
+
 const CMatrix CMatrix::operator*(const CMatrix& m) const
 {
 	CMatrix t;

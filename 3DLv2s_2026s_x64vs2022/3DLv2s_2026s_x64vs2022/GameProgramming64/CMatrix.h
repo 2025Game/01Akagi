@@ -12,6 +12,9 @@ public:
 	//行列の取得
 	float* M() const;
 
+	//要素数の取得
+	int Size();
+
 	//*演算子のオーバーロード
 	//CMatrix * CMatrix の演算結果を返す
 	const CMatrix operator*(const CMatrix& m) const;
