@@ -1,6 +1,7 @@
 #include "CRancherWalk.h"
 #include "CXCharacter.h"
 #include "CBullet.h"
+#include "Random.h"
 #include "CUfo.h"
 
 
@@ -10,7 +11,9 @@
 #define ROTATIONSPEED 2.0f
 
 CRancherWalk::CRancherWalk(CXCharacter* parent)
-	:time(5)
+	: mStateStep(0)
+	, mDestinationPos(CVector(0.0f, 0.0f, 0.0f))
+	, time(10)
 {
 	//親のポインタを保存
 	mpParent = parent;
@@ -22,46 +25,78 @@ CRancherWalk::CRancherWalk(CXCharacter* parent)
 void CRancherWalk::Update()
 {
 
-	CVector p = mpParent->Position();
-	mpParent->Position(p +
-		mpParent->MatrixRotate().VectorZ() * VELOCITY);
-
-	if (--time < 0)
+	// ステップごとに処理を切り替え
+	switch (mStateStep)
 	{
-		CUfo* player = CUfo::Instance();
-		//プレイヤーまでのベクトルを求める
-		CVector vp = player->Position() - mpParent->Position();
-		//左ベクトルとの内積を求める
-		float dx = vp.Dot(mpParent->MatrixRotate().VectorX());
-		//上ベクトルとの内積を求める
-		float dy = vp.Dot(mpParent->MatrixRotate().VectorY());
+	case 0: {  //目的地を設定する
+		SetPoint();
 
-		//X軸のズレが2.0未満
-		if (-2.0f < dx && dx < 2.0f)
-		{
-			//Y軸のズレが2.0未満
-			if (-2.0f < dy && dy < 2.0f)
-			{
-				//弾を発射します
-				CBullet* bullet = new CBullet();
-				bullet->Set(1.0f, 1.5f);
-				bullet->Position(
-					CVector(0.0f, 2.0f, 10.0f) * mpParent->Matrix());
-				bullet->Rotation(mpParent->Rotation());
-				bullet->Update();
-
-				time = 5;
-			}
-		}
-		
+		mStateStep++; //ステップを進める
+		break;
 	}
-	
+	case 1: {   //目的地に進む
 
-	/*
-	CBullet* bullet = new CBullet();
-	bullet->Set(0.1f, 1.5f);
-	bullet->Position(CVector(0.0f, 0.0f, 10.0f) * mpParent->Matrix());
-	bullet->Rotation(mpParent->Rotation());
-	bullet->Update();
-	*/
+		CVector pos;
+		pos = mDestinationPos - mpParent->Position();
+
+		//内積を計算して、方向を求める
+		float dx = pos.Dot(mpParent->MatrixRotate().VectorX());
+		float dz = pos.Dot(mpParent->MatrixRotate().VectorZ());
+
+		const float margin = 0.1f;
+		float turnAmount = 5.0f; //回転量
+
+		//目的地が真後ろになっている場合
+		if (dz < 0.0f && abs(dx) < margin)
+		{
+			dx = -1.0f; //旋回させる
+		}
+
+		//左右方向へ回転
+		if (dx > margin)
+		{
+			//左へ回転
+			mpParent->Rotation(mpParent->Rotation() + CVector(0.0f, turnAmount, 0.0f));
+		}
+		else if (dx < -margin)
+		{
+		    //右へ回転
+			mpParent->Rotation(mpParent->Rotation() - CVector(0.0f, turnAmount, 0.0f));
+
+
+		}
+
+		//前に進ませる
+		CVector p = mpParent->Position();
+		mpParent->Position(p +
+			mpParent->MatrixRotate().VectorZ() * VELOCITY);
+
+		//目的地に近くなったら
+		if (pos.Length() < 10.0f)
+		{
+			mStateStep = 0;
+		}
+		break;
+	}
+	case 2:   
+
+		break;
+
+	}
+
+	
+	
+}
+
+//目的地を設定する
+void CRancherWalk::SetPoint()
+{
+	float x, z;
+	CVector pos = mpParent->Position();
+
+	x = pos.X() + Random::get(-50.0f, 50.0f);
+	z = pos.Z() + Random::get(-50.0f, 50.0f);
+	printf("%f\n%f", x, z);
+	mDestinationPos = CVector(x, pos.Y(), z);
+
 }

@@ -150,6 +150,7 @@
     <ClInclude Include="CTitleScene.h" />
     <ClInclude Include="Paladin.h" />
     <ClInclude Include="CUfo.h" />
+    <ClInclude Include="Random.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
