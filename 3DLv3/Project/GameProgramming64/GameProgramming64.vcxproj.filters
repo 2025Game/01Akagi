@@ -246,6 +246,9 @@
     <ClCompile Include="CRancherWalk.cpp">
       <Filter>ソース ファイル\Game\Character\Rancher</Filter>
     </ClCompile>
+    <ClCompile Include="CRancherAttack.cpp">
+      <Filter>ソース ファイル\Game\Character\Rancher</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CApplication.h">
@@ -451,6 +454,9 @@
     </ClInclude>
     <ClInclude Include="Random.h">
       <Filter>ソース ファイル\Lib</Filter>
+    </ClInclude>
+    <ClInclude Include="CRancherAttack.h">
+      <Filter>ソース ファイル\Game\Character\Rancher</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

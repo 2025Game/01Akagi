@@ -9,11 +9,16 @@
 #define VELOCITY 0.1f
 // 回転速度
 #define ROTATIONSPEED 2.0f
+#define WAITTIME 100.0f
 
-CRancherWalk::CRancherWalk(CXCharacter* parent)
-	: mStateStep(0)
-	, mDestinationPos(CVector(0.0f, 0.0f, 0.0f))
-	, time(10)
+CRancherWalk::CRancherWalk()
+	: mStepNum(0)
+	, mDestinationPos(CVector(0.0f,0.0f,0.0f))
+	, mWaitTime(WAITTIME)
+{
+}
+
+void CRancherWalk::Start(CXCharacter* parent)
 {
 	//親のポインタを保存
 	mpParent = parent;
@@ -26,22 +31,24 @@ void CRancherWalk::Update()
 {
 
 	// ステップごとに処理を切り替え
-	switch (mStateStep)
+	switch (mStepNum)
 	{
 	case 0: {  //目的地を設定する
 		SetPoint();
 
-		mStateStep++; //ステップを進める
+		mStepNum++; //ステップを進める
 		break;
 	}
 	case 1: {   //目的地に進む
 
-		CVector pos;
-		pos = mDestinationPos - mpParent->Position();
+		//目的地までの距離を求める
+		CVector ToDestination, RancherPos;
+		RancherPos = mpParent->Position();
+		ToDestination = mDestinationPos - RancherPos;
 
 		//内積を計算して、方向を求める
-		float dx = pos.Dot(mpParent->MatrixRotate().VectorX());
-		float dz = pos.Dot(mpParent->MatrixRotate().VectorZ());
+		float dx = ToDestination.Dot(mpParent->MatrixRotate().VectorX());
+		float dz = ToDestination.Dot(mpParent->MatrixRotate().VectorZ());
 
 		const float margin = 0.1f;
 		float turnAmount = 5.0f; //回転量
@@ -67,14 +74,22 @@ void CRancherWalk::Update()
 		}
 
 		//前に進ませる
-		CVector p = mpParent->Position();
-		mpParent->Position(p +
+		mpParent->Position(RancherPos +
 			mpParent->MatrixRotate().VectorZ() * VELOCITY);
-
+		
 		//目的地に近くなったら
-		if (pos.Length() < 10.0f)
+		if (ToDestination.Length() < 10.0f)
+		{	
+			mStepNum = 0;
+		}
+		
+		//周りにプレイヤー(UFOがいると)
+		CVector PlayerPos = CUfo::Instance()->Position();
+		if ((RancherPos - PlayerPos).Length() < 50.0f)
 		{
-			mStateStep = 0;
+			mState = EState::EATTACK;   //攻撃状態にする
+			printf("近づいた");
+			
 		}
 		break;
 	}

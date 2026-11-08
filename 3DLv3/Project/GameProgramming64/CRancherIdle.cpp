@@ -14,13 +14,3 @@ void CRancherIdle::Update()
 {
 	mState = EState::EWALK;
 }
-
-void CRancherIdle::Collision(CCollider* m, CCollider* o)
-{
-	
-}
-
-void CRancherIdle::Collision()
-{
-	;
-}

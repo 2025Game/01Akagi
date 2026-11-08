@@ -38,8 +38,13 @@ CRancher::CRancher(const CVector& pos, const CVector& rot, const CVector& scale)
 	mpState->Start(this);
 	mState = mpState->State();
 
+	//状態の更新
+	mpState->Update();
+
 	//歩く状態の作成
-	mpWalk = std::make_unique<CRancherWalk>(this);
+	mpWalk = std::make_unique<CRancherWalk>();
+	//攻撃状態の作成
+	mpAttack = std::make_unique<CRancherAttack>();
 
 	//タグの設定
 	Tag(ETag::ERANCHER);
@@ -61,10 +66,13 @@ void CRancher::Update()
 		case EState::EWALK:
 			mpState = mpWalk.get();
 			break;
+		case EState::EATTACK:
+			mpState = mpAttack.get();
+			break;
 		default:
 			break;
 		}
-		mpState->Start();
+		mpState->Start(this);
 
 	}
 	// GRAVITYの大きさぶんだけ、下方向へ移動させる

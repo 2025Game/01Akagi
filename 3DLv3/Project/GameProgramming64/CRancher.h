@@ -4,6 +4,7 @@
 #include "CColliderCapsule.h"
 #include "CRancherIdle.h"
 #include "CRancherWalk.h"
+#include "CRancherAttack.h"
 
 class CRancher :public CXCharacter
 {
@@ -23,5 +24,6 @@ private:
 	CState* mpState;  //ó‘Ôˆ—
 	std::unique_ptr<CRancherIdle> mpIdle;     //‘Ò‹@ó‘Ô
 	std::unique_ptr<CRancherWalk> mpWalk;     //•à‚­ó‘Ô
+	std::unique_ptr<CRancherAttack> mpAttack; //UŒ‚ó‘Ô
 };
 #endif // !CRANCHER_H

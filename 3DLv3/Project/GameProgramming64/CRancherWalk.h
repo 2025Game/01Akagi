@@ -6,13 +6,14 @@
 class CRancherWalk : public CState
 {
 public:
-	CRancherWalk(CXCharacter* parent);
+	CRancherWalk();
+	void Start(CXCharacter* parent) override;
 	void Update() override;
 	void SetPoint();
 private:
-	int mStateStep; //ステップの順番     
+	int mStepNum; //ステップの順番を表す     
 	CVector mDestinationPos; //目的地の座標
-	int time;
+	int mWaitTime;  //止める時間
 };
 
 
