@@ -5,6 +5,7 @@
 class CRancherAttack : public CState
 {
 public:
+	CRancherAttack();
 	void Start(CXCharacter* parent) override;
 	void Update() override;
 private:
