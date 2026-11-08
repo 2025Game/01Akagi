@@ -69,10 +69,10 @@ void CRancherAttack::Update()
 
 			//’e‚ðŒ‚‚Â
 			CBullet* bullet = new CBullet();
-			bullet->Set(1.0f, 1.5f);
+			bullet->Set(2.0f, 1.5f);
 			bullet->Rotation(lookat);
 			bullet->Position(
-				 CVector(1.0f, 2.0f, 1.0f) * mpParent->Matrix());
+				 CVector(0.0f, 1.0f, 1.0f) * mpParent->Matrix());
 			bullet->Update();
 
 		}

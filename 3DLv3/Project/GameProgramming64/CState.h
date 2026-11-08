@@ -10,6 +10,7 @@ enum class EState
 	EWALK, //歩き（生物）
 	EMOVE,  //動く(モノ)
 	EMOVE_FAST, //はやく動く(モノ)
+	EABDUCTION, //アブダクション
 	EATTACK, // 攻撃
 	EJUMP,   // ジャンプ
 	EDAMAGE  // ダメージ

@@ -70,6 +70,7 @@
     <ClCompile Include="CTransform.cpp" />
     <ClCompile Include="CTriangle.cpp" />
     <ClCompile Include="CUfo.cpp" />
+    <ClCompile Include="CUfoAbduction.cpp" />
     <ClCompile Include="CUfoIdle.cpp" />
     <ClCompile Include="CUfoMove.cpp" />
     <ClCompile Include="CUfoMoveFast.cpp" />
@@ -138,6 +139,7 @@
     <ClInclude Include="CTexture.h" />
     <ClInclude Include="CTransform.h" />
     <ClInclude Include="CTriangle.h" />
+    <ClInclude Include="CUfoAbduction.h" />
     <ClInclude Include="CUfoIdle.h" />
     <ClInclude Include="CUfoMove.h" />
     <ClInclude Include="CUfoMoveFast.h" />

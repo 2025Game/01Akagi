@@ -5,6 +5,7 @@
 #include "CUfoIdle.h"
 #include "CUfoMove.h"
 #include "CUfoMoveFast.h"
+#include "CUfoAbduction.h"
 
 class CUfo : public CXCharacter
 {
@@ -25,7 +26,9 @@ private:
 	CState* mpState;  //状態処理
 	std::unique_ptr <CUfoIdle> mpIdle;     //待機状態
 	std::unique_ptr<CUfoMove> mpMove;       //動く状態
-	std::unique_ptr<CUfoMoveFast> mpMoveFast;
+	std::unique_ptr<CUfoMoveFast> mpMoveFast; //早く動く状態
+	std::unique_ptr<CUfoAbduction> mpAbduction; //アブダクション中状態
+	int mHp;
 };
 
 #endif // !CUFO_H

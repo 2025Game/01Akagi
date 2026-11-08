@@ -9,6 +9,7 @@ enum class ETag {
 	EPLAYER, //プレイヤー
 	ERANCHER, //牧場主
 	ESWORD, //剣
+	EBULLET, //弾
 	ECube   //壁(テスト用) TODO:後で消す
 };
 /*

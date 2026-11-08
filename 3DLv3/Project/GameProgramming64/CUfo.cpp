@@ -20,7 +20,8 @@ CUfo* CUfo::Instance()
 }
 
 CUfo::CUfo()
-	:mCollider(this, &mMatrix, CVector(0.0f,1.5f,0.0f), UFO_RADIUS)
+	: mCollider(this, &mMatrix, CVector(0.0f,1.5f,0.0f), UFO_RADIUS)
+	, mHp(10)
 {
 
 
@@ -36,6 +37,8 @@ CUfo::CUfo()
 	mpMove = std::make_unique<CUfoMove>();
 	//はやく動く状態の作成
 	mpMoveFast = std::make_unique<CUfoMoveFast>();
+	//アブダクション中状態の作成
+	mpAbduction = std::make_unique<CUfoAbduction>();
 
 	//タグの設定
 	Tag(ETag::EPLAYER);
@@ -64,6 +67,9 @@ void CUfo::Update()
 			break;
 		case EState::EMOVE_FAST:
 			mpState = mpMoveFast.get();
+			break;
+		case EState::EABDUCTION:
+			mpState = mpAbduction.get();
 			break;
 		default:
 			break;
@@ -107,6 +113,17 @@ void CUfo::Collision(CCollider* m, CCollider* o)
 
 			//行列の更新
 			CTransform::Update();
+		}
+		if (o->Type() == CCollider::EType::ESPHERE)
+		{
+			if (CCollider::Collision(m, o))
+			{
+				if (o->Tag() == ETag::EBULLET)
+				{
+					mHp--;
+					printf("HP:%d", mHp);
+				}
+			}
 		}
 		break;
 	}

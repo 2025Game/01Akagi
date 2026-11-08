@@ -43,6 +43,9 @@ void CUfoIdle::Update()
 	{
 		mState = EState::EMOVE_FAST;
 	}
-	
+	if (mInput.Key(VK_LBUTTON))
+	{
+		mState = EState::EABDUCTION;
+	}
 	
 }
