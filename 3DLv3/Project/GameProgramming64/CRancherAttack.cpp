@@ -47,7 +47,8 @@ void CRancherAttack::Update()
 	float dz = dz_rad * RAD_TO_DEG;
 
 	//回転を適用(プレイヤーへ水平方向に向けて)
-	CVector r(0.0f, dy, dz);
+	//Y軸にはモデルを正面にさせるための数を加算する
+	CVector r(0.0f, dy + 30.0f, dz);
 	mpParent->Rotation(r);
 
 	//

@@ -121,7 +121,7 @@ void CUfo::Collision(CCollider* m, CCollider* o)
 				if (o->Tag() == ETag::EBULLET)
 				{
 					mHp--;
-					printf("HP:%d", mHp);
+					printf("HP:%d\n", mHp);
 				}
 			}
 		}
