@@ -1,4 +1,5 @@
 #include "CUfoAbduction.h"
+#include "CXCharacter.h"
 
 void CUfoAbduction::Start(CXCharacter* parent)
 {
@@ -6,6 +7,8 @@ void CUfoAbduction::Start(CXCharacter* parent)
 	mpParent = parent;
     
 	mState = EState::EABDUCTION; //状態の種類をアブダクション中にする
+
+
 }
 
 void CUfoAbduction::Update()
@@ -20,4 +23,9 @@ void CUfoAbduction::Update()
 		mState = EState::EIDLE;
 	}
 	
+}
+
+void CUfoAbduction::Collision(CCollider* m, CCollider* o)
+{
+	;
 }

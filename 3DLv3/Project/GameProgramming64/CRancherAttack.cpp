@@ -3,9 +3,10 @@
 #include "CVector.h"
 #include "CBullet.h"
 #include <cmath>
-#define INTERVAL_TIME 200
-#define RELOAD_TIME 20
-#define RADIUS 30.0f
+
+#define INTERVAL_TIME 200  //準備時間
+#define RELOAD_TIME 20  //リロード時間
+#define RADIUS 30.0f  //攻撃するまでの硬直時間
 
 CRancherAttack::CRancherAttack()
 	: mWaitTime(INTERVAL_TIME)
@@ -65,7 +66,7 @@ void CRancherAttack::Update()
 		//弾を撃つまでの準備時間が経過したら
 		if (mWaitTime-- < 0)
 		{
-			mWaitTime = RELOAD_TIME;  //打ち終わったあとのリロード時間を入れる
+			mWaitTime = RELOAD_TIME;  //リロード時間を入れる
 			mStepNum++; //ステップを進める
 
 			//弾を撃つ

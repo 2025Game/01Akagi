@@ -4,7 +4,6 @@
 #include "Random.h"
 #include "CUfo.h"
 
-
 //ˆÚ“®‘¬“x
 #define VELOCITY 0.1f
 // ‰ñ“]‘¬“x

@@ -94,7 +94,6 @@ void CUfo::Collision(CCollider* m, CCollider* o)
 		return;
 	}
 
-
 	// ó‘ÔƒNƒ‰ƒX‚ÌÕ“Ëˆ—
 	mpState->Collision(m, o);
 

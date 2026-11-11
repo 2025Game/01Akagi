@@ -1,4 +1,5 @@
 #include "CRancher.h"
+#include "CUfo.h"
 #include "CXCharacter.h"
 #include "CCollisionManager.h"
 
@@ -45,6 +46,8 @@ CRancher::CRancher(const CVector& pos, const CVector& rot, const CVector& scale)
 	mpWalk = std::make_unique<CRancherWalk>();
 	//攻撃状態の作成
 	mpAttack = std::make_unique<CRancherAttack>();
+	//アブダクション状態の作成
+	mpAbduction = std::make_unique<CRancherAbduction>();
 
 	//タグの設定
 	Tag(ETag::ERANCHER);
@@ -52,9 +55,38 @@ CRancher::CRancher(const CVector& pos, const CVector& rot, const CVector& scale)
 }
 
 void CRancher::Update()
-{
+{	
 	// 状態の更新
 	mpState->Update();
+
+	CVector PlayerPos = CUfo::Instance()->Position();
+	CVector dist = PlayerPos - mPosition;
+
+	CVector distXZ = CVector(dist.X(), 0.0f, dist.Z());
+
+
+	if (mpState->State() != EState::EABDUCTION)
+	{	
+		if (CUfo::Instance()->State() == EState::EABDUCTION 
+			&& distXZ.Length() < 30.0f
+			&& (PlayerPos.Y() - 100.0f) < mPosition.Y()
+			&& PlayerPos.Y() > mPosition.Y())
+		{
+			mpState->State(EState::EABDUCTION);
+		}
+
+	}
+	else if(mpState->State() == EState::EABDUCTION)
+	{
+		if (CUfo::Instance()->State() != EState::EABDUCTION
+			|| distXZ.Length() >= 30.0f
+			|| (PlayerPos.Y() - 100.0f) > mPosition.Y()
+			|| PlayerPos.Y() < mPosition.Y())
+		{
+			mpState->State(EState::EATTACK);
+		}
+	}
+	
 	//状態の切り替え
 	if (mState != mpState->State())
 	{
@@ -68,6 +100,9 @@ void CRancher::Update()
 			break;
 		case EState::EATTACK:
 			mpState = mpAttack.get();
+			break;
+		case EState::EABDUCTION:
+			mpState = mpAbduction.get();
 			break;
 		default:
 			break;

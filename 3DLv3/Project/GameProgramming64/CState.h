@@ -29,6 +29,8 @@ public:
 	virtual void Collision(CCollider* m, CCollider* o) {};
 	//状態?取得
 	EState State() { return mState; }
+	//状態の設定
+	void State(EState state) { mState = state; }
 protected:
 	EState mState; //状態?種類
 	CXCharacter* mpParent; //親?ポインタ

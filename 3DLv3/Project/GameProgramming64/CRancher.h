@@ -5,6 +5,7 @@
 #include "CRancherIdle.h"
 #include "CRancherWalk.h"
 #include "CRancherAttack.h"
+#include "CRancherAbduction.h"
 
 class CRancher :public CXCharacter
 {
@@ -25,5 +26,6 @@ private:
 	std::unique_ptr<CRancherIdle> mpIdle;     //待機状態
 	std::unique_ptr<CRancherWalk> mpWalk;     //歩く状態
 	std::unique_ptr<CRancherAttack> mpAttack; //攻撃状態
+	std::unique_ptr<CRancherAbduction> mpAbduction;  //アブダクション状態
 };
 #endif // !CRANCHER_H
