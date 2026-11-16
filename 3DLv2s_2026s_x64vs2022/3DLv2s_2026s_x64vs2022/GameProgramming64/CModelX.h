@@ -30,6 +30,7 @@ public:
 	void SkipNode();
 	//ｍTokenのポインタを返す
 	char* Token();
+	void Render();
 private:
 	char* mpPointer;	//読み込み位置
 	char mToken[1024];	//取り出した単語の領域
@@ -46,6 +47,8 @@ public:
 	CModelXFrame(CModelX* model);
 	//デストラクタ
 	~CModelXFrame();
+	void Render();
+
 private:
 	std::vector<CModelXFrame*> mChild;  //子フレームの配列
 	CMatrix mTransformMatrix;  //変換行列
@@ -63,6 +66,7 @@ public:
 	~CMesh();
 	//読み込み処理
 	void Init(CModelX* model);
+	void Render();
 private:
 	int mVertexNum;	//頂点数
 	CVector* mpVertex;	//頂点データ

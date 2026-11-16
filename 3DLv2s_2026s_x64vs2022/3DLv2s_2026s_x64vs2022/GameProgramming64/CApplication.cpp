@@ -67,6 +67,25 @@ void CApplication::Start()
 
 void CApplication::Update()
 {
+	//X軸＋回転
+	if (mInput.Key('K')) {
+		mMatrix = mMatrix * CMatrix().RotateX(1);
+	}
+	if (mInput.Key('I')){
+		mMatrix = mMatrix * CMatrix().RotateX(-1);
+	}
+	//Y軸＋回転
+	if (mInput.Key('L')) {
+		mMatrix = mMatrix * CMatrix().RotateY(1);
+	}
+	if (mInput.Key('J')){
+		mMatrix = mMatrix * CMatrix().RotateY(-1);
+	}
+
+	//行列設定
+	glMultMatrixf(mMatrix.M());
+
+
 	//カメラのパラメータを作成する
 	CVector e, c, u;//視点、注視点、上方向
 	//視点を求める
@@ -84,6 +103,10 @@ void CApplication::Update()
 	mModelViewInverse.M(0, 3, 0);
 	mModelViewInverse.M(1, 3, 0);
 	mModelViewInverse.M(2, 3, 0);
+
+	//モデル描画
+	mModelX.Render();
+
 	//2D描画開始
 	CCamera::Start(0, 800, 0, 600);
 

@@ -81,4 +81,5 @@ private:
 	CEnemy* mpEnemy;
 
 	CModelX mModelX;
+	CMatrix mMatrix;
 };
