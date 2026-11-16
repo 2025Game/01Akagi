@@ -96,6 +96,7 @@ void CModel::Load(const char* obj, const char* mtl) {
 	if (fp == NULL) {
 		//コンソールにエラー出力して戻る
 		printf("%s file open error￥n", mtl);
+		printf("指定したパス: %s\n", mtl);
 		return;
 	}
 
@@ -132,7 +133,22 @@ void CModel::Load(const char* obj, const char* mtl) {
 		}
 		//先頭がmap_Kdの時、テクスチャを入力する
 		else if (strcmp(str[0], "map_Kd") == 0) {
-			mMaterial[idx]->Texture()->Load(str[1]);
+			//mMaterial[idx]->Texture()->Load(str[1]);
+			// 行の中から "map_Kd" の位置を探す
+			char* p = strstr(buf, "map_Kd");
+			if (p != NULL) {
+				// "map_Kd" (6文字) の後ろへ移動
+				p += 6;
+				// ファイル名の前にあるスペースやタブをスキップ
+				while (*p == ' ' || *p == '\t') {
+					p++;
+				}
+				// 末尾の改行コード(\r や \n)を削除して終端にする
+				p[strcspn(p, "\r\n")] = '\0';
+
+				
+				mMaterial[idx]->Texture()->Load(p);
+			}
 		}
 		else if (strcmp(str[0], "Ns") == 0) {
 			mMaterial[idx]->Power((float)atof(str[1]));

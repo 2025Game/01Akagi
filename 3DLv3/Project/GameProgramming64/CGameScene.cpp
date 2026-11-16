@@ -10,7 +10,7 @@
 
 //背景モデルデータの指定
 #define MODEL_BACKGROUND "res\\sky.obj", "res\\sky.mtl"
-
+//#define MODEL_BACKGROUND "res\\west+town+finish\\west+town+finish.obj", "res\\west+town+finish\\west+town+finish.mtl"
 
 CGameScene::CGameScene()
 	: CSceneBase(EScene::eGame)

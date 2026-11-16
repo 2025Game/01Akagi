@@ -80,8 +80,12 @@ void CUfo::Update()
 	// 親クラスの更新
 	CXCharacter::Update();
 
-	//カメラの位置をプレイヤーの位置から、少し上にする
-	CCamera::Instance()->Position(CVector(0.0f, 4.0f, 0.0f));
+	if (mpState->State() != EState::EABDUCTION)
+	{
+		//カメラの位置をプレイヤーの位置から、少し上にする
+		CCamera::Instance()->Position(CVector(0.0f, 4.0f, 0.0f));
+	}
+	
 
 	
 }

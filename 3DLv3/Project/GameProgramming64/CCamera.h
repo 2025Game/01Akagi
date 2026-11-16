@@ -15,6 +15,9 @@ public:
 
 	CMatrix ModelViewInverse();
 
+	//カメラを向ける
+	void LookAt(const CVector& v);
+
 	//表示エリアの設定
 	//Start(左座標,右座標,下座標,上座標)
 	static void Start(double left, double right
@@ -31,6 +34,9 @@ private:
 	}
 	static CCamera* spInstance;
 	CInput mInput;
+
+	//カメラが向く場所
+	CVector mEye;
 
 	CMatrix mModelViewMatrix; //モデルビュー行列
 	CMatrix mModelViewInverse; //モデルビュー逆行列

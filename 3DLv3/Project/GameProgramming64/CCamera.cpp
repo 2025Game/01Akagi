@@ -10,6 +10,7 @@ CCamera* CCamera::Instance()
 	if (spInstance == nullptr)
 	{
 		spInstance = new CCamera();
+		spInstance->LookAt(CVector(1.0f, 1.0f, 1.0f));
 	}
 	return spInstance;
 }
@@ -99,6 +100,11 @@ void CCamera::Parent(CXCharacter* parent)
 CMatrix CCamera::ModelViewInverse()
 {
 	return mModelViewInverse;
+}
+
+void CCamera::LookAt(const CVector& v)
+{
+	mEye = v * mMatrix;
 }
 
 void CCamera::End()

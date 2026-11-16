@@ -52,6 +52,7 @@ void CTexture::Load(const char* filename)
 	if (!data)
 	{
 		printf("CTexture::Load Error:%s\n", file.data());
+
 		return;
 	}
 	//テクスチャの作成

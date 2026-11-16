@@ -40,7 +40,7 @@ void CRancherAttack::Update()
 	//Z軸の回転は0にする
 	float dz_rad = 0.0f;
 
-	//ラジアンをに変換する
+	//ラジアンを度に変換する
 	const float RAD_TO_DEG = 180.0f / 3.14f;
 
 	float dx = dx_rad * RAD_TO_DEG;
@@ -48,7 +48,7 @@ void CRancherAttack::Update()
 	float dz = dz_rad * RAD_TO_DEG;
 
 	//回転を適用(プレイヤーへ水平方向に向けて)
-	//Y軸にはモデルを正面にさせるための数を加算する
+	//Y軸にはモデルを正面にさせるための数を加算する()
 	CVector r(0.0f, dy + 30.0f, dz);
 	mpParent->Rotation(r);
 
