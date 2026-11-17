@@ -33,6 +33,11 @@ CMaterial::CMaterial()
 	memset(mName, 0, sizeof(mName));
 	//0‚Å–„‚ß‚é
 	memset(mDiffuse, 0, sizeof(mDiffuse));
+
+	mDiffuse[0] = 0.5f;
+	mDiffuse[1] = 0.5f;
+	mDiffuse[2] = 0.5f;
+	mDiffuse[3] = 0.5f;
 }
 
 /*

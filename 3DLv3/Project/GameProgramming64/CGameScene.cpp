@@ -9,8 +9,8 @@
 #include "CRancher.h"
 
 //背景モデルデータの指定
-#define MODEL_BACKGROUND "res\\sky.obj", "res\\sky.mtl"
-//#define MODEL_BACKGROUND "res\\west+town+finish\\west+town+finish.obj", "res\\west+town+finish\\west+town+finish.mtl"
+//#define MODEL_BACKGROUND "res\\sky.obj", "res\\sky.mtl"
+#define MODEL_BACKGROUND "res\\WestTown\\WestTown.obj", "res\\WestTown\\WestTown.mtl"
 
 CGameScene::CGameScene()
 	: CSceneBase(EScene::eGame)
@@ -32,10 +32,11 @@ void CGameScene::Load()
 	ufo->Init(&mPlayer);
 	ufo->Position(CVector(1.0f, 40.0f, 0.0f));
 
+	//メッシュコライダを生成する
 	mColliderMesh.Set(nullptr, nullptr, &mBackGround);
 
 	CPaladin* paladin = new CPaladin(CVector(0.0f, 5.0f, -9.0f));
-	CRancher* rancher = new CRancher(CVector(30.0f, 5.0f, 60.0f));
+	CRancher* rancher = new CRancher(CVector(30.0f, 50.0f, 150.0f));
 
 	CCharacter3* cube = new CCube();
 	cube->Position(CVector(0.0f, 0.0f, -9.0f));

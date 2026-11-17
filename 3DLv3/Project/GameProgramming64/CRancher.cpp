@@ -154,6 +154,7 @@ void CRancher::Collision(CCollider* m, CCollider* o)
 				//‹‚ß‚½‰ñ“]Šp“x‚ğY²‚Éİ’è‚·‚é
 				mRotation = CVector(mRotation.X(), atan2f(forward.X(), forward.Z()) * RAD_TO_DEG, mRotation.Z());
 
+				
 
 				//e‚Ìİ’è
 				mpParent = o->Parent();

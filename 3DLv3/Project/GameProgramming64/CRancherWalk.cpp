@@ -88,7 +88,6 @@ void CRancherWalk::Update()
 		{
 			mState = EState::EATTACK;   //UŒ‚ó‘Ô‚É‚·‚é
 			printf("‹ß‚Ã‚¢‚½");
-			
 		}
 		break;
 	}
@@ -105,12 +104,13 @@ void CRancherWalk::Update()
 //–Ú“I’n‚ðÝ’è‚·‚é
 void CRancherWalk::SetPoint()
 {
-	float x, z;
+	float x, y, z;
 	CVector pos = mpParent->Position();
 
 	x = pos.X() + Random::get(-50.0f, 50.0f);
+	y = 0.0f;
 	z = pos.Z() + Random::get(-50.0f, 50.0f);
-	printf("%f\n%f", x, z);
-	mDestinationPos = CVector(x, pos.Y(), z);
+	printf("%f\n%f\n%f", x, y, z);
+	mDestinationPos = CVector(x, y, z);
 
 }
