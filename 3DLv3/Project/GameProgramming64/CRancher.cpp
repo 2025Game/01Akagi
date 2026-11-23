@@ -9,14 +9,16 @@
 const float RAD_TO_DEG = 180.0f / (float)M_PI;
 
 #define RANCHER_MODEL "res\\ラグナ.x"  //TODO:変える
-#define GRAVITY 0.0625f     // 重力
+#define GRAVITY 1.0625f     // 重力 (初期値: 0.0625f)
+
+
 
 //static変数の定義
 CModelX CRancher::msModel;
 
 CRancher::CRancher(const CVector& pos, const CVector& rot, const CVector& scale)
-	: mColliderCapsule(this, &mCombinedMatrix, CVector(0.0f, 4.0f, 0.0f),
-		CVector(0.0f, 0.0f, 0.0f), 0.5f)
+	: mColliderCapsule(this, &mCombinedMatrix, CVector(0.0f, 7.0f, 0.0f),
+		CVector(0.0f, 0.0f, 0.0f), 1.0f)
 {
 
 	//1つ作成されたらその後初期値の代入はされない。
@@ -59,12 +61,13 @@ void CRancher::Update()
 	// 状態の更新
 	mpState->Update();
 
+	//プレイヤーが周りで誘拐しているとき
 	CVector PlayerPos = CUfo::Instance()->Position();
 	CVector dist = PlayerPos - mPosition;
 
 	CVector distXZ = CVector(dist.X(), 0.0f, dist.Z());
 
-
+	//自分の状態をアブダクションにする
 	if (mpState->State() != EState::EABDUCTION)
 	{	
 		if (CUfo::Instance()->State() == EState::EABDUCTION 
@@ -121,6 +124,7 @@ void CRancher::Update()
 
 void CRancher::Collision(CCollider* m, CCollider* o)
 {
+
 	// 状態クラスの衝突処理
 	mpState->Collision(m, o);
 
@@ -129,6 +133,12 @@ void CRancher::Collision(CCollider* m, CCollider* o)
 	case CCollider::EType::ECAPSULE:
 		if (o->Type() == CCollider::EType::ETRIANGLE)
 		{
+			//相手がUFOの昇降口のコライダーの場合は処理を行わない
+			if (o->Tag() == ETag::EABDUCTION_HATCH)
+			{
+				return;
+			}
+
 			CVector adjust;//調整用ベクトル
 			//三角形とカプセルの衝突判定
 			if (CCollider::CollisionTriangleCapsule(o, m, &adjust))
@@ -163,6 +173,7 @@ void CRancher::Collision(CCollider* m, CCollider* o)
 				CTransform::Update();
 			}
 		}
+
 		break;
 	}
 }

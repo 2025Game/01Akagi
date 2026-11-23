@@ -6,7 +6,8 @@ class CCollisionManager;
 //識別タグ
 enum class ETag {
 	ENONE, //未設定
-	EPLAYER, //プレイヤー
+	EUFO, //プレイヤー
+	EABDUCTION_HATCH,
 	ERANCHER, //牧場主
 	ESWORD, //剣
 	EBULLET, //弾
@@ -38,6 +39,10 @@ public:
 	//タグの設定
 	//tag :識別タグ
 	void Tag(ETag tag) { mTag = tag; }
+
+	//有効フラグの設定
+	void Enabled(bool enabled) { mEnabled = enabled; }
+
 protected:
 	int mPriority;	//優先度
 	bool mEnabled;	//有効フラグ
