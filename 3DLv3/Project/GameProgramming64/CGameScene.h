@@ -17,9 +17,11 @@ public:
 	void Update();
 private:
 	CModel mBackGround; //背景モデル
+	CModel Town;
 	CModelX mPlayer;
 
 	CColliderMesh mColliderMesh; //メッシュコライダ
+	CColliderMesh mTownMwsh;
 
 };
 #endif

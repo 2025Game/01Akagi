@@ -8,9 +8,12 @@
 #include "CUfo.h"
 #include "CRancher.h"
 
+//TODO:(後で消す)現状objファイルはシェーダを使っていないので描画が重い 
 //背景モデルデータの指定
 //#define MODEL_BACKGROUND "res\\sky.obj", "res\\sky.mtl"
-#define MODEL_BACKGROUND "res\\WestTown\\WestTown.obj", "res\\WestTown\\WestTown.mtl"
+//#define MODEL_BACKGROUND "res\\WestTown\\WestTown.obj", "res\\WestTown\\WestTown.mtl"
+#define MODEL_BACKGROUND "res\\WestTown\\testWestTown.obj", "res\\WestTown\\testWestTown.mtl" //軽量版
+
 
 CGameScene::CGameScene()
 	: CSceneBase(EScene::eGame)
@@ -36,7 +39,7 @@ void CGameScene::Load()
 	mColliderMesh.Set(nullptr, nullptr, &mBackGround);
 
 	CPaladin* paladin = new CPaladin(CVector(0.0f, 5.0f, -9.0f));
-	CRancher* rancher = new CRancher(CVector(30.0f, 50.0f, 150.0f));
+	CRancher* rancher = new CRancher(CVector(30.0f, 50.0f, 20.0f));
 
 	CCharacter3* cube = new CCube();
 	cube->Position(CVector(0.0f, 0.0f, -9.0f));

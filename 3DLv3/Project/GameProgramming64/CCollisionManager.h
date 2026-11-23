@@ -5,7 +5,9 @@
 #include "CCollider.h"
 
 //衝突処理範囲より離れているコライダは衝突処理しない
-#define COLLISIONRANGE 50
+#define COLLISIONRANGE 100
+
+//TODO:(後で消す)COLLISIONRANGEの値を大きくすれば、MeshColliderの衝突判定は抜けにくくなる
 
 class CCollisionManager : public CTaskManager
 {

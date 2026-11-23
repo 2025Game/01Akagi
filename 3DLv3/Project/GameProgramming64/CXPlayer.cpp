@@ -31,8 +31,8 @@ CXPlayer::CXPlayer()
 	mpJump = std::make_unique<CPlayerJump>();
 
 	//タグの設定
-	Tag(ETag::EPLAYER);
-	mColliderCapsule.Tag(ETag::EPLAYER);
+	Tag(ETag::EUFO);
+	mColliderCapsule.Tag(ETag::EUFO);
 	mColliderSword.Tag(ETag::ESWORD);
 
 	//カメラの親をプレイヤーにする

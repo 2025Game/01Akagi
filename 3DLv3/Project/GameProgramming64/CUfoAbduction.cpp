@@ -19,15 +19,20 @@ void CUfoAbduction::Start(CXCharacter* parent)
 
 void CUfoAbduction::Update()
 {
-	if (mInput.Key(VK_LBUTTON))
+	//左クリックが押されていないと
+	if (mInput.Key(VK_LBUTTON) == false)
 	{
-
-	}
-	else
-	{
-		//左クリックが押されていないと待機状態にする
+		//待機状態にする
 		mState = EState::EIDLE;
 	}
+	//左クリックを押したまま右クリックを押すと
+	else if(mInput.Key(VK_RBUTTON)) 
+	{
+		//攻撃状態にする
+		mState = EState::EATTACK;
+	}
+
+
 
 	// ステップごとに処理を切り替え
 	switch (mStepNum)

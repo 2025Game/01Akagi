@@ -209,6 +209,9 @@ inline float SegmentTriangleDistanceSq(
 	CVector& outSegPoint,
 	CVector& outTriPoint)
 {
+
+
+
 	CVector segDir = p1 - p0; //線分の向き
 	// 1. 線分を無限直線として三角形面と交差するか
 	CVector n = (b - a).Cross(c - a);
@@ -344,6 +347,8 @@ bool CCollider::CollisionTriangleSphere(
 	normal = (v1 - v0).Cross(v2 - v0).Normalize();
 	sv = ev + normal * sphere->mRadius;
 	ev = ev - normal * sphere->mRadius;
+
+
 
 	//三角形と線分の衝突判定を行う
 	return FuncCollisionTriangleLine(v0, v1, v2, normal, sv, ev, adjust);

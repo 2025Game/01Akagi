@@ -46,7 +46,7 @@ void CPaladinIdle::Collision(CCollider* m, CCollider* o)
 			if (CCollider::CollisionCapsuleCapsule(o, m, &adjusts))
 			{
 				
-				if (o->Parent()->Tag() == ETag::EPLAYER &&
+				if (o->Parent()->Tag() == ETag::EUFO &&
 					o->Parent()->State() == EState::EATTACK &&
 					o->Tag() == ETag::ESWORD)
 				{
