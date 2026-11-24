@@ -1,9 +1,10 @@
 #include "CUfo.h"
 #include "CCollisionManager.h"
 #include "CCamera.h"
+#include "CEffect.h"
 
 #define UFO_MODEL "res\\paladin\\Paladin WProp J Nordstrom@Idle.fbx.x"
-#define UFO_RADIUS 1.0f
+#define UFO_RADIUS 2.0f
 
 //UFOのインスタンス
 CUfo* CUfo::mpInstance = nullptr;
@@ -169,6 +170,9 @@ void CUfo::Collision(CCollider* m, CCollider* o)
 				{
 					mHp--;
 					printf("HP:%d\n", mHp);
+					//エフェクト生成
+					new CEffect(o->Parent()->Position(), 1.0f, 1.0f, "exp.tga", 4, 4, 2);
+
 				}
 			}
 		}

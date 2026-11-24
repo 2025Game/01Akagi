@@ -49,7 +49,7 @@ void CRancherAttack::Update()
 
 	//回転を適用(プレイヤーへ水平方向に向けて)
 	//Y軸にはモデルを正面にさせるための数を加算する()
-	CVector r(0.0f, dy + 30.0f, dz);
+	CVector r(0.0f, dy + 10.0f, dz);
 	mpParent->Rotation(r);
 
 	//

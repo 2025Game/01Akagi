@@ -1,5 +1,6 @@
 #include "CBillBoard.h"
 #include "CApplication.h"
+#include "CCamera.h"
 
 CBillBoard::CBillBoard(CVector pos, float w, float h, int priority)
 	: CCharacter3(priority)
@@ -47,7 +48,8 @@ void CBillBoard::Render(CMaterial* mpMaterial)
 	//行列の保存
 	glPushMatrix();
 	//拡縮、回転、移動させる
-	glMultMatrixf((CApplication::ModelViewInverse() * mMatrix).M());
+    glMultMatrixf((CCamera::Instance()->ModelViewInverse() * mMatrix).M());
+
 
 	//ライトオフ
 	glDisable(GL_LIGHTING);
