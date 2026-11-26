@@ -22,6 +22,7 @@ CUfo* CUfo::Instance()
 
 CUfo::CUfo() //TODO:UFOにぴったりのコライダーを考える
 	: mColliderCapsule(this, &mMatrix, CVector(0.0f,3.5f,0.0f), CVector(0.0f, 0.5f, 0.0f), UFO_RADIUS)
+	, mAttackCapsule(this, &mMatrix, CVector(0.0f, 3.5f, 0.0f), CVector(0.0f, 3.5f, 50.0f), 5.0f)
 	, mHp(10)
 {
 
@@ -62,6 +63,7 @@ CUfo::CUfo() //TODO:UFOにぴったりのコライダーを考える
 	mColliderCapsule.Tag(ETag::EUFO);
 	mBottomCollider[0].Tag(ETag::EABDUCTION_HATCH);
 	mBottomCollider[1].Tag(ETag::EABDUCTION_HATCH);
+	mAttackCapsule.Tag(ETag::EUFO_ATTACK_BEAM);
 	
 	//カメラの親をプレイヤーにする
 	CCamera::Instance()->Parent(this);
@@ -111,12 +113,15 @@ void CUfo::Update()
 	
 	//コライダの更新
 	mColliderCapsule.Update();
+	mAttackCapsule.Update();
 	
 }
 
 void CUfo::Collision(CCollider* m, CCollider* o)
 {
-	if (o == &mColliderCapsule || o == &mBottomCollider[0] || o == &mBottomCollider[1])
+	if (o == &mColliderCapsule 
+		|| o == &mBottomCollider[0] || o == &mBottomCollider[1] 
+		|| o == &mAttackCapsule)
 	{
 		//相手がプレイヤーのコライダの時は、衝突処理を行わない
 		return;
@@ -128,6 +133,7 @@ void CUfo::Collision(CCollider* m, CCollider* o)
 	//自身のコライダタイプの判定
 	switch (m->Type()) {
 	case CCollider::EType::ECAPSULE:
+		if (m == &mAttackCapsule) { return; } //攻撃用コライダは判定しない
 		if (o->Type() == CCollider::EType::ETRIANGLE)
 		{
 			CVector adjust;//調整用ベクトル
@@ -189,7 +195,16 @@ void CUfo::Collision()
 
 	mBottomCollider[0].ChangePriority();
 	mBottomCollider[1].ChangePriority();
-
+	CCollisionManager::Instance()->Collision(
+		&mBottomCollider[0], COLLISIONRANGE
+	);
+	CCollisionManager::Instance()->Collision(
+		&mBottomCollider[1], COLLISIONRANGE
+	);
+	mAttackCapsule.ChangePriority();
+	CCollisionManager::Instance()->Collision(
+		&mAttackCapsule, COLLISIONRANGE
+	);
 
 }
 void CUfo::Init(CModelX* model)

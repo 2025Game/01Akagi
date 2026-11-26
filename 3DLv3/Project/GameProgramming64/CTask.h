@@ -7,7 +7,8 @@ class CCollisionManager;
 enum class ETag {
 	ENONE, //未設定
 	EUFO, //プレイヤー
-	EABDUCTION_HATCH,
+	EUFO_ATTACK_BEAM, //UFOの攻撃
+	EABDUCTION_HATCH, //UFOの開口部
 	ERANCHER, //牧場主
 	ESWORD, //剣
 	EBULLET, //弾

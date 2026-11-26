@@ -58,6 +58,7 @@
     <ClCompile Include="CRancher.cpp" />
     <ClCompile Include="CRancherAbduction.cpp" />
     <ClCompile Include="CRancherAttack.cpp" />
+    <ClCompile Include="CRancherDamage.cpp" />
     <ClCompile Include="CRancherIdle.cpp" />
     <ClCompile Include="CRancherWalk.cpp" />
     <ClCompile Include="CRectangle.cpp" />
@@ -128,6 +129,7 @@
     <ClInclude Include="CRancher.h" />
     <ClInclude Include="CRancherAbduction.h" />
     <ClInclude Include="CRancherAttack.h" />
+    <ClInclude Include="CRancherDamage.h" />
     <ClInclude Include="CRancherIdle.h" />
     <ClInclude Include="CRancherWalk.h" />
     <ClInclude Include="CRectangle.h" />

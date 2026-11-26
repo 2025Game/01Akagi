@@ -17,7 +17,7 @@ const float RAD_TO_DEG = 180.0f / (float)M_PI;
 CModelX CRancher::msModel;
 
 CRancher::CRancher(const CVector& pos, const CVector& rot, const CVector& scale)
-	: mColliderCapsule(this, &mCombinedMatrix, CVector(0.0f, 7.0f, 0.0f),
+	: mColliderCapsule(this, &mCombinedMatrix, CVector(0.0f, 10.0f, 0.0f),
 		CVector(0.0f, 0.0f, 0.0f), 1.0f)
 {
 
@@ -50,6 +50,8 @@ CRancher::CRancher(const CVector& pos, const CVector& rot, const CVector& scale)
 	mpAttack = std::make_unique<CRancherAttack>();
 	//アブダクション状態の作成
 	mpAbduction = std::make_unique<CRancherAbduction>();
+	//ダメージ状態の作成
+	mpDamage = std::make_unique<CRancherDamage>();
 
 	//タグの設定
 	Tag(ETag::ERANCHER);
@@ -107,6 +109,9 @@ void CRancher::Update()
 		case EState::EABDUCTION:
 			mpState = mpAbduction.get();
 			break;
+		case EState::EDAMAGE:
+			mpState = mpDamage.get();
+			break;
 		default:
 			break;
 		}
@@ -120,6 +125,10 @@ void CRancher::Update()
 	CXCharacter::Update();
 
 	mColliderCapsule.Update();
+	if (mpState->State() == EState::EDAMAGE)
+	{
+		Collision();
+	}
 }
 
 void CRancher::Collision(CCollider* m, CCollider* o)
@@ -131,9 +140,10 @@ void CRancher::Collision(CCollider* m, CCollider* o)
 	//自身のコライダタイプの判定
 	switch (m->Type()) {
 	case CCollider::EType::ECAPSULE:
+
 		if (o->Type() == CCollider::EType::ETRIANGLE)
 		{
-			//相手がUFOの昇降口のコライダーの場合は処理を行わない
+			//相手がUFOの開口部のコライダーの場合は処理を行わない
 			if (o->Tag() == ETag::EABDUCTION_HATCH)
 			{
 				return;
@@ -164,13 +174,35 @@ void CRancher::Collision(CCollider* m, CCollider* o)
 				//求めた回転角度をY軸に設定する
 				mRotation = CVector(mRotation.X(), atan2f(forward.X(), forward.Z()) * RAD_TO_DEG, mRotation.Z());
 
-				
+
 
 				//親の設定
 				mpParent = o->Parent();
 
 				//行列の更新
 				CTransform::Update();
+			}
+		}
+
+		if (o->Type() == CCollider::EType::ECAPSULE)
+		{
+			
+			
+			CVector adjust;//調整用ベクトル
+			//カプセルとカプセルの衝突判定
+			if (CCollider::CollisionCapsuleCapsule(o, m, &adjust))
+			{
+
+				//UFOの攻撃が当たった時
+				if (o->Parent()->State() == EState::EATTACK
+					&& o->Tag() == ETag::EUFO_ATTACK_BEAM)
+				{
+					//CVector fwd = o->Parent()->CombinedMatrix().VectorZ();
+					mpState->State(EState::EDAMAGE);
+
+					//mPosition = mPosition + fwd.Normalize() * 1.0f;
+
+				}
 			}
 		}
 
@@ -184,4 +216,5 @@ void CRancher::Collision()
 	mColliderCapsule.ChangePriority();
 	CCollisionManager::Instance()->Collision(
 		&mColliderCapsule, COLLISIONRANGE);
+
 }

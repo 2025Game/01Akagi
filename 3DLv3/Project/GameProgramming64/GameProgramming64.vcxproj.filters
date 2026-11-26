@@ -258,6 +258,9 @@
     <ClCompile Include="CUfoAttack.cpp">
       <Filter>ソース ファイル\Game\Character\UFO</Filter>
     </ClCompile>
+    <ClCompile Include="CRancherDamage.cpp">
+      <Filter>ソース ファイル\Game\Character\Rancher</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CApplication.h">
@@ -475,6 +478,9 @@
     </ClInclude>
     <ClInclude Include="CUfoAttack.h">
       <Filter>ソース ファイル\Game\Character\UFO</Filter>
+    </ClInclude>
+    <ClInclude Include="CRancherDamage.h">
+      <Filter>ソース ファイル\Game\Character\Rancher</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

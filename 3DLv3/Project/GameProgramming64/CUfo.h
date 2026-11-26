@@ -26,6 +26,7 @@ public:
 private:
 	static CUfo* mpInstance;  //インスタンス
 	CColliderCapsule mColliderCapsule;  //UFOの当たり判定
+	CColliderCapsule mAttackCapsule;    //攻撃の当たり判定
 	CColliderTriangle mBottomCollider[2];//底面の当たり判定(npc回収の判定に使う)
 	CState* mpState;  //状態処理
 	std::unique_ptr <CUfoIdle> mpIdle;     //待機状態

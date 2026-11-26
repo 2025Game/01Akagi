@@ -1,5 +1,7 @@
 #include "CUfoAttack.h"
-#include <stdio.h>
+#include "CXCharacter.h"
+#include "CCollisionManager.h"
+#define ATTACKCOLLISION_RANGE 100.0f
 
 void CUfoAttack::Start(CXCharacter* parent)
 {
@@ -14,6 +16,7 @@ void CUfoAttack::Update()
 {
 	if (mInput.Key(VK_LBUTTON) && mInput.Key(VK_RBUTTON))
 	{
+		
 		printf("kougeki");
 	}
 	else
@@ -21,5 +24,10 @@ void CUfoAttack::Update()
 		//左クリックが押されていないとアブダクション中にする
 		mState = EState::EABDUCTION;
 	}
+
+}
+
+void CUfoAttack::Collision(CCollider* m, CCollider* o)
+{
 
 }

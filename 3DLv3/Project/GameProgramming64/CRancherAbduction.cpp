@@ -34,7 +34,7 @@ void CRancherAbduction::Collision(CCollider* m, CCollider* o)
 			if (CCollider::CollisionTriangleCapsule(o, m, &adjusts))
 			{
 
-				//UFO‚Ì¸~Œû‚ÉG‚ê‚½ê‡
+				//UFO‚ÌŠJŒû•”‚ÉG‚ê‚½ê‡
 				if (o->Tag() == ETag::EABDUCTION_HATCH)
 				{
 					mpParent->Enabled(false);
