@@ -464,7 +464,7 @@
     <ClInclude Include="CRancherWalk.h">
       <Filter>ソース ファイル\Game\Character\Rancher</Filter>
     </ClInclude>
-    <ClInclude Include="Random.h">
+    <ClInclude Include="Utility.h">
       <Filter>ソース ファイル\Lib</Filter>
     </ClInclude>
     <ClInclude Include="CRancherAttack.h">

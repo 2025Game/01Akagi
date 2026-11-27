@@ -1,7 +1,7 @@
 #include "CRancherWalk.h"
 #include "CXCharacter.h"
 #include "CBullet.h"
-#include "Random.h"
+#include "Utility.h"
 #include "CUfo.h"
 
 //ˆÚ“®‘¬“x
@@ -107,9 +107,9 @@ void CRancherWalk::SetPoint()
 	float x, y, z;
 	CVector pos = mpParent->Position();
 
-	x = pos.X() + Random::get(-50.0f, 50.0f);
+	x = pos.X() + Utility::random(-50.0f, 50.0f);
 	y = 0.0f;
-	z = pos.Z() + Random::get(-50.0f, 50.0f);
+	z = pos.Z() + Utility::random(-50.0f, 50.0f);
 	printf("%f\n%f\n%f", x, y, z);
 	mDestinationPos = CVector(x, y, z);
 

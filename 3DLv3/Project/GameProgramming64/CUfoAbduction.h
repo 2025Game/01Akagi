@@ -15,6 +15,10 @@ public:
 	void Collision(CCollider* m, CCollider* o) override;
 private:
 	int mStepNum; //ステップの順番を表す     
+	float mVelocity;  //カメラの移動量
+	float mMoveDist;  //カメラがこれまで進んだ距離
+	float mTotalDist; //目的のカメラ位置までの総距離
+	CVector mCameraStartPos; //カメラの初期位置
 	CInput mInput;
 	
 };
